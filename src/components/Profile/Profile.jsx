@@ -3,7 +3,7 @@ import { auth, db } from "../../Firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-import "./profile.css";
+import "./Profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
