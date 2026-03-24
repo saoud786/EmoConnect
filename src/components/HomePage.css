@@ -1,0 +1,489 @@
+:root{
+
+--max-width:1200px;
+
+--text-primary:#1e293b;
+--text-secondary:#64748b;
+
+--accent:#3b82f6;
+
+}
+
+/* PAGE */
+
+.home-page{
+
+min-height:100vh;
+
+font-family:Inter,sans-serif;
+
+background:#ffffff;
+
+color:var(--text-primary);
+
+}
+
+/* CONTAINER */
+
+.home-page .container{
+
+max-width:var(--max-width);
+
+margin:auto;
+
+padding:0 20px;
+
+}
+
+/* HERO */
+
+.home-page .hero{
+
+padding:120px 0;
+
+text-align:center;
+
+}
+
+/* TITLE */
+
+.home-page .chat-title{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+
+font-size:64px;
+
+font-weight:800;
+
+margin-bottom:16px;
+
+opacity:0;
+
+transform:translateY(30px);
+
+animation:fadeUp .8s forwards;
+
+}
+
+/* LOGO SAME HEIGHT AS TEXT */
+
+.home-page .hero-logo{
+
+  height:64px;
+  width:auto;
+  object-fit:contain;
+
+  animation: logoFloat 2.5s ease-in-out infinite;
+
+}
+
+/* TEXT */
+
+.home-page .lead{
+
+max-width:650px;
+
+margin:auto;
+
+font-size:16px;
+
+color:var(--text-secondary);
+
+opacity:0;
+
+transform:translateY(30px);
+
+animation:fadeUp .8s .2s forwards;
+
+}
+
+/* BUTTONS */
+
+.home-page .hero-actions{
+
+margin-top:30px;
+
+display:flex;
+
+justify-content:center;
+
+gap:16px;
+
+opacity:0;
+
+transform:translateY(30px);
+
+animation:fadeUp .8s .4s forwards;
+
+}
+
+/* BUTTON */
+
+.home-page .btn{
+
+padding:12px 24px;
+
+border-radius:40px;
+
+font-weight:600;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+/* PRIMARY */
+
+.home-page .btn.primary{
+
+background:var(--accent);
+
+color:white;
+
+}
+
+.home-page .btn.primary:hover{
+
+background:#2563eb;
+
+transform:translateY(-3px);
+
+}
+
+/* OUTLINE */
+
+.home-page .btn.outline{
+
+border:2px solid #e2e8f0;
+
+color:var(--text-primary);
+
+}
+
+.home-page .btn.outline:hover{
+
+border-color:var(--accent);
+
+transform:translateY(-3px);
+
+}
+
+/* SECTION TITLE */
+
+.home-page .section-title{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+gap:20px;
+
+font-size:32px;
+font-weight:700;
+
+margin-bottom:50px;
+
+color:var(--text-primary);
+
+opacity:0;
+transform:translateY(30px);
+animation:fadeUp .8s .6s forwards;
+
+}
+
+/* LEFT LINE */
+
+.home-page .section-title::before{
+
+content:"";
+
+flex:1;
+
+height:2px;
+
+background:#e2e8f0;
+
+}
+
+/* RIGHT LINE */
+
+.home-page .section-title::after{
+
+content:"";
+
+flex:1;
+
+height:2px;
+
+background:#e2e8f0;
+
+}
+
+/* GRID */
+
+.home-page .points-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+}
+
+/* CARD */
+
+.home-page .point{
+
+background:white;
+
+padding:40px 25px;
+
+border-radius:20px;
+
+text-align:center;
+
+border:1px solid #f1f5f9;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.04);
+
+transition:.3s;
+
+opacity:0;
+
+transform:translateY(30px);
+
+animation:fadeUp .8s forwards;
+
+}
+
+.home-page .point:nth-child(1){animation-delay:.8s}
+.home-page .point:nth-child(2){animation-delay:1s}
+.home-page .point:nth-child(3){animation-delay:1.2s}
+
+/* HOVER */
+
+.home-page .point:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 16px 30px rgba(0,0,0,0.08);
+
+}
+
+/* ICON */
+
+.home-page .icon{
+
+width:70px;
+
+height:70px;
+
+margin:0 auto 16px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:rgba(59,130,246,0.08);
+
+border-radius:16px;
+
+color:#3b82f6;
+
+transition:.3s;
+
+}
+
+.home-page .point:hover .icon{
+
+transform:scale(1.1);
+
+background:rgba(59,130,246,0.15);
+
+}
+
+/* TEXT */
+
+.home-page .point h3{
+
+font-size:20px;
+
+margin-bottom:10px;
+
+}
+
+.home-page .point p{
+
+color:var(--text-secondary);
+
+font-size:15px;
+
+}
+
+/* FOOTER */
+
+.site-footer{
+
+border-top:1px solid #e2e8f0;
+
+padding:30px 0;
+
+margin-top:60px;
+
+}
+
+.footer-inner{
+
+display:flex;
+
+justify-content:space-between;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+}
+
+.site-footer a{
+
+color:var(--text-primary);
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.muted{
+
+font-size:14px;
+
+color:#94a3b8;
+
+}
+
+
+
+
+
+
+
+
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.home-page .chat-title{
+
+font-size:40px;
+
+}
+
+.home-page .hero-logo{
+
+height:40px;
+
+}
+
+.home-page .hero-actions{
+
+flex-direction:column;
+
+}
+
+.footer-inner{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+}
+
+
+
+
+
+/* Make the main container relative so the absolute background stays inside */
+.home-page {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background animation container */
+.bg-animation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Floating background icons */
+.bg-icon {
+  position: absolute;
+  top: -15%;
+  color: var(--accent);
+  opacity: 0.25;
+  will-change: transform;
+  animation: floatDownSmooth linear infinite;
+  filter: blur(.2px);
+}
+
+/* Smooth floating animation */
+@keyframes floatDownSmooth {
+
+  0% {
+    transform: translateY(-10vh) translateX(0px) rotate(0deg) scale(.95);
+  }
+
+  25% {
+    transform: translateY(30vh) translateX(15px) rotate(4deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(60vh) translateX(-12px) rotate(-3deg) scale(1.05);
+  }
+
+  75% {
+    transform: translateY(90vh) translateX(10px) rotate(2deg) scale(1);
+  }
+
+  100% {
+    transform: translateY(120vh) translateX(-8px) rotate(0deg) scale(.95);
+  }
+
+}
+
+/* Ensure main content stays above animation */
+.hero,
+.points,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}

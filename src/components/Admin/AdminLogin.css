@@ -1,0 +1,328 @@
+/* ===============================
+   ADMIN LOGIN PAGE
+================================ */
+
+.adminLoginPage{
+
+  height: calc(100vh - 71px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:linear-gradient(to bottom,#f8fafc,#eef2ff);
+
+  overflow:hidden;
+  padding:20px;
+
+}
+
+/* ===============================
+   LOGIN CARD
+================================ */
+
+.adminLoginCard{
+
+  background:#ffffff;
+
+  padding:42px 38px;
+
+  border-radius:18px;
+
+  width:380px;
+  max-width:95%;
+
+  text-align:center;
+
+  box-shadow:0 25px 60px rgba(0,0,0,0.08);
+
+  transition:all .25s ease;
+
+}
+
+
+.admin-tabs{
+display:flex;
+gap:10px;
+}
+
+.tab{
+padding:8px 16px;
+border-radius:8px;
+border:1px solid #e5e7eb;
+background:white;
+cursor:pointer;
+font-size:14px;
+transition:.2s;
+}
+
+.tab:hover{
+background:#f3f4f6;
+}
+
+.tab.active{
+background:#4f6ef7;
+color:white;
+border-color:#4f6ef7;
+}
+
+/* Hover animation */
+
+.adminLoginCard:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:0 35px 70px rgba(0,0,0,0.12);
+
+}
+
+
+/* ===============================
+   TITLE
+================================ */
+
+.adminLoginCard h1{
+
+  font-size:26px;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+
+  color:#111827;
+
+}
+
+.adminLoginCard p{
+
+  font-size:14px;
+
+  color:#6b7280;
+
+  margin-bottom:24px;
+
+}
+
+
+/* ===============================
+   FORM
+================================ */
+
+.adminLoginCard form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+}
+
+
+/* ===============================
+   INPUT
+================================ */
+
+.adminLoginCard input{
+
+  width:100%;
+
+  padding:12px 14px;
+
+  border-radius:10px;
+
+  border:1px solid #e5e7eb;
+
+  font-size:14px;
+
+  background:#f9fafb;
+
+  outline:none;
+
+  transition:all .25s ease;
+
+}
+
+
+/* Hover */
+
+.adminLoginCard input:hover{
+
+  border-color:#6366f1;
+
+}
+
+
+/* Focus */
+
+.adminLoginCard input:focus{
+
+  border-color:#6366f1;
+
+  background:white;
+
+  box-shadow:0 0 0 3px rgba(99,102,241,.15);
+
+}
+
+
+/* ===============================
+   BUTTON
+================================ */
+
+.adminLoginCard button{
+
+  width:100%;
+
+  margin-top:8px;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+
+  color:white;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:all .25s ease;
+
+}
+
+
+/* Hover */
+
+.adminLoginCard button:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 10px 25px rgba(59,130,246,.35);
+
+}
+
+
+/* Click */
+
+.adminLoginCard button:active{
+
+  transform:scale(.96);
+
+}
+
+
+/* Disabled */
+
+.adminLoginCard button:disabled{
+
+  opacity:.6;
+
+  cursor:not-allowed;
+
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media(max-width:480px){
+
+.adminLoginCard{
+
+  padding:32px 22px;
+
+}
+
+.adminLoginCard h1{
+
+  font-size:22px;
+
+}
+
+.adminLoginCard input{
+
+  font-size:13px;
+
+}
+
+}
+
+
+button:disabled{
+opacity:.5;
+cursor:not-allowed;
+}
+
+
+
+.admin-stats{
+display:flex;
+gap:15px;
+margin:15px 0 25px 0;
+}
+
+.stat-card{
+background:white;
+padding:14px 18px;
+border-radius:8px;
+box-shadow:0 3px 8px rgba(0,0,0,0.06);
+width:220px;
+}
+
+.stat-card h3{
+font-size:14px;
+color:#666;
+margin-bottom:5px;
+}
+
+.stat-card p{
+font-size:24px;
+font-weight:600;
+color:#222;
+}
+.admin-header{
+margin-bottom:10px;
+}
+
+.admin-header h1{
+font-size:24px;
+margin-bottom:4px;
+}
+
+.admin-header p{
+font-size:14px;
+color:#666;
+}
+.message-box{
+background:#f8f9fb;
+padding:15px;
+border-radius:8px;
+margin-top:10px;
+}
+
+.message-label{
+font-size:12px;
+color:#888;
+margin-bottom:4px;
+}
+
+.message-text{
+font-size:15px;
+font-weight:500;
+}
+
+.admin-header h1{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.admin-header p{
+color:#666;
+}

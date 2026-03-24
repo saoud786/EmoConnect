@@ -1,0 +1,300 @@
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+  width:100%;
+
+  background:var(--card-bg);
+
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:1000;
+
+  border-bottom:1px solid var(--border);
+
+}
+
+/* ================= CONTAINER ================= */
+
+.nav-container{
+
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  height:70px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+/* ================= LEFT SIDE ================= */
+
+.nav-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:20px;
+
+}
+
+/* ================= LOGO ================= */
+
+.logo{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  text-decoration:none;
+
+}
+
+.logo-icon{
+
+  width:46px;
+
+  height:44px;
+
+  object-fit:contain;
+
+  transition:.25s;
+
+}
+
+.logo:hover .logo-icon{
+
+  transform:scale(1.05);
+
+}
+
+/* ================= HOME LINK ================= */
+
+.nav-link{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  font-weight:700;
+
+  font-size:16px;
+
+  text-decoration:none;
+
+  color:var(--text);
+
+  padding:7px 12px;
+
+  border-radius:8px;
+
+  transition:.25s;
+
+}
+
+.nav-link:hover{
+
+  color:#3b82f6;
+
+  background:#f1f5f9;
+
+}
+
+/* ACTIVE PAGE */
+
+.nav-link.active{
+
+  color:#3b82f6;
+
+  background:#eff6ff;
+
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.nav-right{
+
+  display:flex;
+
+  gap:12px;
+
+  align-items:center;
+
+}
+
+/* ================= COMMON BUTTON ================= */
+
+.nav-btn{
+
+  text-decoration:none;
+
+  padding:9px 16px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  transition:all .18s ease;
+
+  display:inline-block;
+
+}
+
+/* ================= SIGNUP ================= */
+
+.signup-btn{
+
+  border:1px solid var(--text);
+
+  color:var(--text);
+
+  background:transparent;
+
+}
+
+.signup-btn:hover{
+
+  background:var(--text);
+
+  color:white;
+
+  transform:translateY(-2px);
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+
+}
+
+/* ================= LOGIN ================= */
+
+.login-btn{
+
+  background:var(--text);
+
+  color:white;
+
+  border:1px solid var(--text);
+
+}
+
+.login-btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 6px 14px rgba(0,0,0,0.2);
+
+  background:#111827;
+
+}
+
+/* ================= ADMIN ================= */
+
+.admin-btn{
+
+  background:linear-gradient(135deg,#6366f1,#3b82f6);
+
+  color:white;
+
+  border:1px solid rgba(59,130,246,0.4);
+
+  box-shadow:0 6px 18px rgba(59,130,246,0.25);
+
+  transition:all .25s ease;
+
+}
+
+.admin-btn:hover{
+
+  transform:translateY(-2px) scale(1.03);
+
+  box-shadow:0 12px 28px rgba(59,130,246,0.45);
+
+  background:linear-gradient(135deg,#4f46e5,#2563eb);
+
+}
+
+.admin-btn:active{
+
+  transform:scale(.95);
+
+}
+
+.hero-inner{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+}
+
+.hero-logo{
+width:130px;
+height:130px;
+object-fit:contain;
+}
+
+.hero-content{
+max-width:520px;
+text-align:left;
+}
+
+@media(max-width:768px){
+
+.hero-inner{
+flex-direction:column;
+text-align:center;
+}
+
+.hero-content{
+text-align:center;
+}
+
+.hero-logo{
+width:90px;
+height:90px;
+}
+
+}
+ 
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+  .nav-container{
+
+    height:64px;
+
+    padding:0 10px;
+
+  }
+
+  .nav-link{
+
+    display:none;
+
+  }
+
+  .nav-btn{
+
+    padding:8px 12px;
+
+    font-size:13px;
+
+  }
+
+}

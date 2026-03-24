@@ -1,0 +1,220 @@
+/* OVERLAY */
+
+.feedback-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(15,23,42,0.55);
+backdrop-filter:blur(6px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+
+/* CARD */
+
+.feedback-box{
+background:white;
+width:440px;
+max-width:92%;
+padding:32px;
+border-radius:18px;
+box-shadow:0 20px 60px rgba(0,0,0,0.25);
+text-align:center;
+animation:popIn .25s ease;
+}
+
+@keyframes popIn{
+from{
+transform:scale(.92);
+opacity:.4;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+
+/* TITLE */
+
+.feedback-box h3{
+font-size:20px;
+font-weight:600;
+margin-bottom:22px;
+color:#111827;
+}
+
+
+/* OPTIONS */
+
+.feedback-options{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.feedback-options button{
+padding:10px 16px;
+border-radius:999px;
+border:1px solid #e5e7eb;
+background:#f9fafb;
+color:#374151;
+font-size:14px;
+cursor:pointer;
+transition:all .25s ease;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.feedback-options button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+
+/* FEELING COLORS */
+
+/* MUCH BETTER */
+
+.feedback-options button.muchBetter:hover{
+background:#ecfdf5;
+color:#059669;
+border-color:#a7f3d0;
+}
+
+.feedback-options button.muchBetter.active{
+background:#10b981;
+color:white;
+border-color:#10b981;
+}
+
+
+/* BETTER */
+
+.feedback-options button.better:hover{
+background:#f0fdf4;
+color:#16a34a;
+border-color:#bbf7d0;
+}
+
+.feedback-options button.better.active{
+background:#22c55e;
+color:white;
+border-color:#22c55e;
+}
+
+
+/* SAME */
+
+.feedback-options button.same:hover{
+background:#f3f4f6;
+color:#6b7280;
+border-color:#d1d5db;
+}
+
+.feedback-options button.same.active{
+background:#9ca3af;
+color:white;
+border-color:#9ca3af;
+}
+
+
+/* ANXIOUS */
+
+.feedback-options button.anxious:hover{
+background:#fff7ed;
+color:#ea580c;
+border-color:#fed7aa;
+}
+
+.feedback-options button.anxious.active{
+background:#f97316;
+color:white;
+border-color:#f97316;
+}
+
+
+/* WORSE */
+
+.feedback-options button.worse:hover{
+background:#fef2f2;
+color:#dc2626;
+border-color:#fecaca;
+}
+
+.feedback-options button.worse.active{
+background:#ef4444;
+color:white;
+border-color:#ef4444;
+}
+
+
+/* TEXTAREA */
+
+.feedback-box textarea{
+width:100%;
+height:90px;
+border-radius:12px;
+border:1px solid #e5e7eb;
+padding:12px;
+font-size:14px;
+resize:none;
+margin-bottom:18px;
+transition:border .2s;
+}
+
+.feedback-box textarea:focus{
+outline:none;
+border-color:#6366f1;
+}
+
+
+/* ACTION BUTTONS */
+
+.feedback-actions{
+display:flex;
+justify-content:flex-end;
+gap:12px;
+}
+
+.feedback-actions button{
+padding:9px 18px;
+border-radius:10px;
+border:none;
+font-size:14px;
+cursor:pointer;
+transition:.2s;
+}
+
+.feedback-actions button:first-child{
+background:#f3f4f6;
+}
+
+.feedback-actions button:first-child:hover{
+background:#e5e7eb;
+}
+
+.feedback-actions button:last-child{
+background:#6366f1;
+color:white;
+}
+
+.feedback-actions button:last-child:hover{
+background:#4f46e5;
+transform:translateY(-1px);
+box-shadow:0 6px 18px rgba(79,70,229,0.35);
+}

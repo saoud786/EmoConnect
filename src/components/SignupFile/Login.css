@@ -1,0 +1,178 @@
+.loginPage {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Card */
+.loginCard {
+  width: 100%;
+  max-width: 440px;
+  background: white;
+  padding: 42px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tabs */
+.loginTabs {
+  display: flex;
+  background: #f3f4f6;
+  padding: 6px;
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+
+.loginTabs button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 12px;
+  background: transparent;
+  color: #666;
+  transition: 0.3s;
+}
+
+.loginTabs button.active {
+  background: black;
+  color: white;
+}
+
+/* Title */
+.loginTitle {
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.loginSubtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 25px;
+}
+
+/* Form */
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Input Box */
+.inputBox {
+  display: flex;
+  align-items: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 14px 16px;
+  border-radius: 14px;
+  transition: 0.25s;
+}
+
+.inputBox:focus-within {
+  border-color: black;
+  background: white;
+}
+
+/* Icon */
+.inputIcon {
+  font-size: 18px;
+  color: #6b7280;
+  margin-right: 10px;
+}
+
+/* Input */
+.inputBox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* Eye Button */
+.eyeBtn {
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Button */
+.loginBtn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.loginBtn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+/* Footer */
+.loginFooter {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+.loginFooter a {
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+}
+
+.loginFooter a:hover {
+  text-decoration: underline;
+}
+
+/* Toast */
+.toastBox {
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  z-index: 9999;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .loginCard {
+    padding: 28px;
+  }
+
+  .loginTitle {
+    font-size: 22px;
+  }
+}

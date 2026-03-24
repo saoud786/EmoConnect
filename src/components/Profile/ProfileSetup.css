@@ -1,0 +1,411 @@
+/* ===============================
+   GLOBAL RESET
+   Fresh Light Theme (No Scroll Bug)
+================================ */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+  font-family: "Inter", sans-serif;
+
+  /* Calm Mental Health Background */
+  background: radial-gradient(
+    circle at top,
+    #eaf4ff,
+    #f8fbff,
+    #ffffff
+  );
+}
+
+/* ===============================
+   VARIABLES (Fresh EmoConnect Theme)
+================================ */
+:root {
+  --card: rgba(255, 255, 255, 0.92);
+  --accent: #60a5fa;
+  --muted: rgba(15, 23, 42, 0.55);
+  --border: rgba(96, 165, 250, 0.25);
+  --text: #0f172a;
+}
+
+/* ===============================
+   PAGE CENTER (Navbar-aware)
+================================ */
+.ps-container {
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   MAIN CARD
+================================ */
+.ps-card {
+  width: 520px;
+  max-width: 92%;
+  padding: 26px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-align: center;
+  color: var(--text);
+  box-shadow: 0 25px 90px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+/* Card Hover */
+.ps-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 110px rgba(96, 165, 250, 0.25);
+}
+
+/* ===============================
+   HEADER
+================================ */
+.ps-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.ps-header h2 {
+  margin: 0;
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+/* ===============================
+   AVATAR
+================================ */
+.ps-avatar-wrap {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ps-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ps-avatar-wrap:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px rgba(96, 165, 250, 0.35);
+}
+
+/* Overlay */
+.ps-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.ps-avatar-wrap:hover .ps-avatar-overlay {
+  opacity: 1;
+}
+
+/* ===============================
+   EDIT BUTTON
+================================ */
+.ps-avatar-edit {
+  margin-top: 8px;
+}
+
+.ps-edit-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.ps-edit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(96, 165, 250, 0.35);
+}
+
+.ps-edit-btn input {
+  display: none;
+}
+
+/* ===============================
+   FORM
+================================ */
+.ps-form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ps-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ps-label {
+  width: 110px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: left;
+}
+
+.ps-input {
+  flex: 1;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text);
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.ps-input:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+.ps-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 6px rgba(96, 165, 250, 0.15);
+}
+
+/* Dropdown Fix */
+.ps-input option {
+  background: white;
+  color: var(--text);
+}
+
+
+/* ===============================
+   EMOJI PICKER
+================================ */
+.ps-emoji-picker {
+  flex: 1;
+  position: relative;
+}
+
+.ps-emoji-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 160ms ease;
+}
+
+.ps-emoji-button:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
+}
+
+.ps-emoji-grid {
+  position: absolute;
+  top: 115%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  z-index: 9999;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.ps-emoji-cell {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(96, 165, 250, 0.08);
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease;
+}
+
+.ps-emoji-cell:hover {
+  background: rgba(96, 165, 250, 0.25);
+  transform: scale(1.15);
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.ps-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.ps-btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 800;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.ps-save {
+  flex: 2;
+  padding: 12px;
+  background: var(--accent);
+  color: white;
+}
+
+.ps-save:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(96, 165, 250, 0.35);
+}
+
+.ps-skip {
+  flex: 1;
+  padding: 12px;
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--text);
+}
+
+.ps-skip:hover {
+  background: rgba(96, 165, 250, 0.2);
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   PREVIEW MODAL
+================================ */
+.ps-preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+}
+
+.ps-preview-box {
+  width: 380px;
+  height: 380px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.ps-preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ===============================
+   CROP MODAL
+================================ */
+.ps-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+}
+
+.ps-modal-box {
+  width: 420px;
+  max-width: 92%;
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.ps-crop-area {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.ps-modal-box input[type="range"] {
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 520px) {
+  body {
+    overflow: auto;
+  }
+
+  .ps-card {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .ps-field {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ps-label {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  .ps-actions {
+    flex-direction: column;
+  }
+}
+  .ps-userid-help {
+  font-size: 12px;
+  text-align: left;
+  margin-top: -8px;
+  color: var(--muted);
+}
+
+
+
+
+

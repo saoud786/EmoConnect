@@ -1,0 +1,211 @@
+/* ================================
+   MAIN CONTAINER (NO SIDEBAR OVERRIDE)
+================================ */
+.emoai-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: transparent; /* IMPORTANT */
+  overflow: hidden;
+}
+
+/* ================================
+   HEADER
+================================ */
+.emoai-header {
+  padding: 18px 28px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.emoai-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.emoai-header p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ================================
+   CHAT AREA
+================================ */
+.emoai-chat {
+  flex: 1;
+  padding: 30px 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(
+    to bottom,
+    #f8fafc 0%,
+    #eef2ff 100%
+  );
+}
+
+/* Scrollbar */
+.emoai-chat::-webkit-scrollbar {
+  width: 6px;
+}
+.emoai-chat::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+/* ================================
+   CHAT BUBBLES
+================================ */
+.chat-bubble {
+  max-width: 65%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  animation: fadeIn 0.25s ease-in-out;
+  transition: 0.2s ease;
+}
+
+/* USER */
+.user-bubble {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.user-bubble:hover {
+  transform: translateY(-2px);
+}
+
+/* AI */
+.ai-bubble {
+  align-self: flex-start;
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  border-bottom-left-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.ai-bubble:hover {
+  background: #f9fafb;
+}
+
+/* Typing */
+.typing {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* ================================
+   INPUT SECTION
+================================ */
+.emoai-input {
+  padding: 18px 30px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Input */
+.emoai-input input {
+  flex: 1;
+  padding: 12px 18px;
+  border-radius: 40px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.emoai-input input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Button */
+.emoai-input button {
+  padding: 10px 22px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.emoai-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+.emoai-input button:active {
+  transform: scale(0.96);
+}
+
+/* ================================
+   WELCOME
+================================ */
+.welcome-msg {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+/* ================================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   EMOAI HEADER FIX
+================================ */
+
+.emoai-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 20px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.mobile-back-btn{
+  background:none;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  color:#3b82f6;
+}
+
+.emoai-header-text h2{
+  margin:0;
+  font-size:16px;
+}
+
+.emoai-header-text p{
+  margin:0;
+  font-size:12px;
+  color:#6b7280;
+}

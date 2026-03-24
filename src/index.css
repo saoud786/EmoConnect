@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+
+:root {
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --text: #0f172a;
+  --border: rgba(96, 165, 250, 0.25);
+}
+
+/* LIGHT MODE */
+body[data-theme="light"] {
+  background: radial-gradient(circle at top, #eaf4ff, #ffffff);
+  color: var(--text);
+}
+
+/* DARK MODE */
+body[data-theme="dark"] {
+  --card-bg: rgba(30, 41, 59, 0.92);
+  --text: #f8fafc;
+  --border: rgba(148, 163, 184, 0.25);
+
+  background: radial-gradient(circle at top, #0f172a, #000);
+  color: var(--text);
+}

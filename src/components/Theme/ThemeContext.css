@@ -1,0 +1,85 @@
+/* ============================================
+   EmoConnect Theme System
+   Only Inside Chat Wrapper
+============================================ */
+
+/* Wrapper Default */
+.emo-chat-theme {
+  min-height: 100vh;
+  width: 100%;
+  transition: background 0.35s ease, color 0.35s ease;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================================
+   🌞 LIGHT MODE (Chat Only)
+============================================ */
+.emo-chat-theme.light {
+  background: radial-gradient(
+    circle at top,
+    #eaf4ff,
+    #f8fbff,
+    #ffffff
+  );
+
+  color: #0f172a;
+
+  --card: rgba(255, 255, 255, 0.92);
+  --accent: #60a5fa;
+  --muted: rgba(15, 23, 42, 0.55);
+  --border: rgba(96, 165, 250, 0.25);
+  --text: #0f172a;
+}
+
+/* ============================================
+   🌙 DARK MODE (Chat Only)
+============================================ */
+.emo-chat-theme.dark {
+  background: radial-gradient(
+    circle at top,
+    #0f172a,
+    #111827,
+    #000000
+  );
+
+  color: #ffffff;
+
+  --card: rgba(30, 41, 59, 0.92);
+  --accent: #60a5fa;
+  --muted: rgba(255, 255, 255, 0.55);
+  --border: rgba(96, 165, 250, 0.25);
+  --text: #ffffff;
+}
+
+/* ============================================
+   GLOBAL COMPONENT SUPPORT (Chat Only)
+============================================ */
+
+/* Cards */
+.emo-chat-theme .ps-card,
+.emo-chat-theme .chat-card,
+.emo-chat-theme .profile-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* Inputs */
+.emo-chat-theme input,
+.emo-chat-theme select,
+.emo-chat-theme textarea {
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.emo-chat-theme.dark input,
+.emo-chat-theme.dark select,
+.emo-chat-theme.dark textarea {
+  background: rgba(15, 23, 42, 0.65);
+}
+
+/* Buttons */
+.emo-chat-theme button {
+  font-family: inherit;
+}

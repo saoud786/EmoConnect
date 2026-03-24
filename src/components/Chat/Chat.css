@@ -1,0 +1,182 @@
+/* src/components/Chat/Chat.css */
+
+/* ===============================
+   GLOBAL RESET
+================================ */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+
+.chat-layout {
+
+  display: flex;
+
+  height: calc(100dvh - 72px); /* navbar height */
+
+  background: radial-gradient(circle at top, #eaf4ff, #ffffff);
+
+  overflow: visible ;
+
+}
+
+/* ===============================
+   MAIN CONTENT AREA
+================================ */
+
+.chat-main {
+
+  display: flex;
+
+  flex: 1;
+
+  height: 100%;
+
+  overflow: hidden;
+
+}
+
+/* ===============================
+   LEFT PANEL (ChatList)
+================================ */
+
+.chat-list {
+
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+
+  border-right: 1px solid #e5e7eb;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+}
+
+/* ===============================
+   RIGHT PANELS
+================================ */
+
+.chat-window,
+.add-user,
+.requests,
+.emo-ai {
+
+  flex: 1;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+}
+
+/* ===============================
+   TABLET
+================================ */
+
+@media (max-width:1024px){
+
+  .chat-list{
+    width:280px;
+    min-width:280px;
+    max-width:280px;
+  }
+
+}
+
+/* ===============================
+   MOBILE LAYOUT
+================================ */
+
+@media (max-width:768px){
+
+  .chat-layout{
+
+    height:calc(100dvh - 72px);
+
+    flex-direction:column;
+
+  }
+
+  .chat-main{
+
+    flex-direction:column;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:hidden;
+
+  }
+
+  .chat-list{
+
+    width:100%;
+
+    min-width:100%;
+
+    max-width:100%;
+
+    height:100%;
+
+    border-right:none;
+
+    overflow-y:auto;
+
+    padding-bottom:72px; /* bottom nav space */
+
+    box-sizing:border-box;
+
+  }
+
+  .chat-window,
+  .add-user,
+  .requests,
+  .emo-ai{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+  }
+
+}
+
+/* ===============================
+   SMALL PHONE FIX
+================================ */
+
+@media (max-width:480px){
+
+  .chat-list{
+
+    padding-bottom:80px;
+
+  }
+
+}
