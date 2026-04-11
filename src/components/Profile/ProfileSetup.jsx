@@ -335,7 +335,7 @@ export default function ProfileSetup() {
                     .replace(/[^a-z0-9_]/g, "")
                 )
               }
-              placeholder="example: saoud_35"
+              placeholder="example: Shamshul_123"
             />
           </div>
 
