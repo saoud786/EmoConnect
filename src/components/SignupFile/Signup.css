@@ -1,150 +1,270 @@
-/* Signup.css - centered card, consistent buttons, responsive */
-
-/* make sure overall box-sizing (if not set globally) */
-*,
-*::before,
-*::after {
+/* ===============================
+   GLOBAL
+================================ */
+* {
   box-sizing: border-box;
 }
 
-/* Container - take full viewport minus navbar (assumes navbar height = 70px) */
+/* ===============================
+   CONTAINER
+================================ */
 .signup-container {
-  min-height: calc(100vh - 70px);
+  min-height: calc(99.8vh - 70px);
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 28px;
-  background: linear-gradient(95deg, #fafafa 0%, #efefef 100%);
-  overflow: hidden; /* prevents scroll caused by animation or shadows */
+  justify-content: flex-start;
+
+  padding: 60px 20px;
+
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
+}
+/* HEADER */
+.signup-header {
+  margin-bottom: 30px;
 }
 
-/* Card */
-.signup-card {
-  width: 100%;
-  max-width: 420px;
-  background: #fff;
-  padding: 34px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 12px 30px rgba(18, 24, 40, 0.08);
-  transform-origin: center;
-  animation: cardFade 560ms cubic-bezier(.2,.9,.3,1);
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* subtle pop-in animation */
-@keyframes cardFade {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(.995);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* SIMPLE ICON (NO PURPLE ❌) */
+.header-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  font-size: 20px;
+
+  /* background: #f1f5f9; */
+  color: #0f172a;
+  border: 1px solid #e5e7ebea;
+
+  /* 🔥 POSITION FIX */
+  margin-top: -11px;   /* upar */
+  margin-right: -8px;   /* right */
 }
 
-/* Title / Subtitle */
+/* TITLE */
 .title {
-  font-size: 26px;
+  margin: 0;
+  font-size: 28px;
   font-weight: 700;
-  margin: 0 0 8px;
-  color: #0f1724;
+  color: #0f172a;
+}
+
+/* SUBTITLE */
+.subtitle {
+  margin-top: 6px;
+  margin-left: 16px;  /* 🔥 right shift */
+  font-size: 14px;
+  color: #64748b;
+}
+/* ICON BOX */
+.role-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  font-size: 22px;
+
+  /* background: #f1f5f9; */
+}
+
+/* Speaker Color */
+/* ROLE ICON BOX */
+.role-icon {
+  width: 34px;   /* 🔥 pehle 42px tha */
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+margin-top: 9px;
+
+  border-radius: 8px;
+  font-size: 16px;  /* 🔥 icon size chota */
+}
+
+/* ALIGNMENT */
+.role-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+/* ===============================
+   TITLE
+================================ */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+
+  margin-bottom: 10px;
 }
 
 .subtitle {
-  margin: 0 0 22px;
-  font-size: 14px;
-  color: #616774;
+  font-size: 15px;
+  color: #64748b;
+
+  margin-bottom: 40px;
 }
 
-/* Options layout */
-.options {
+/* ===============================
+   GRID
+================================ */
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* ===============================
+   CARD
+================================ */
+.role-card {
+  padding: 32px;
+  border-radius: 20px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+.role-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.role-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* DESCRIPTION */
+.role-desc {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+
+  margin-bottom: 24px;
+}
+
+/* ===============================
+   BUTTON GROUP
+================================ */
+.btn-group {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  align-items: center;
+  gap: 12px;
 }
 
-/* Buttons — keep fixed max-width so they don't reflow layout or affect navbar */
-.option-btn {
-  width: 100%;
-  max-width: 340px; /* keeps consistent size across buttons */
-  display: inline-flex;
+/* ===============================
+   PRIMARY BUTTON
+================================ */
+.primary-btn {
+  padding: 13px;
+  border-radius: 10px;
+  border: none;
+
+  background: #0f172a;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  color: #0f1724;
-  border: 1px solid rgba(0,0,0,0.9);
-  background: transparent;
-  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
-  box-shadow: none;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-/* icon sizing */
-.option-btn .icon {
-  font-size: 20px;
-  display: inline-block;
-  line-height: 1;
+/* hover */
+.primary-btn:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
 }
 
-/* hover + focus */
-.option-btn:hover,
-.option-btn:focus {
-  background: #0f1724;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(15,23,36,0.12);
-  outline: none;
-}
+/* ===============================
+   SECONDARY BUTTON
+================================ */
+.secondary-btn {
+  padding: 13px;
+  border-radius: 10px;
 
-/* Phone variant */
-.option-btn.phone {
-  border: 1px solid #1e90ff;
-  color: #1e90ff;
-  background: rgba(30,144,255,0.03);
-}
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #0f172a;
 
-.option-btn.phone:hover,
-.option-btn.phone:focus {
-  background: #1e90ff;
-  color: #fff;
-  box-shadow: 0 10px 28px rgba(30,144,255,0.18);
-}
-
-/* footer */
-.footer-text {
-  margin-top: 18px;
   font-size: 14px;
-  color: #545b66;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.footer-link {
-  font-weight: 700;
-  color: #0f1724;
-  text-decoration: none;
+/* hover */
+.secondary-btn:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
 }
 
-/* small screens */
-@media (max-width: 520px) {
-  .signup-card {
-    padding: 22px;
-    border-radius: 12px;
+/* ===============================
+   VISUAL DIFFERENTIATION (PRO TOUCH)
+================================ */
+.role-card:first-child {
+  border-top: 4px solid #6366f1; /* Speaker */
+}
+
+.role-card:last-child {
+  border-top: 4px solid #3b82f6; /* Listener */
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+
+  .role-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
   }
 
   .title {
-    font-size: 20px;
+    font-size: 26px;
   }
 
-  .option-btn {
-    font-size: 14px;
-    padding: 12px;
-    max-width: 100%;
+  .subtitle {
+    text-align: center;
   }
 
-  .option-btn .icon { font-size: 18px; }
 }

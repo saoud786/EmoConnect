@@ -1,0 +1,243 @@
+/* ===============================
+   MAIN CONTAINER (LIGHT CLEAN)
+================================ */
+.sleep-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===============================
+   CENTER CONTENT
+================================ */
+.sleep-content {
+  width: 100%;
+  max-width: 520px;
+
+  text-align: center;
+  color: #065f46;
+
+  z-index: 2;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.sleep-title {
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #065f46;
+
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   SOUND NAME
+================================ */
+.sleep-name {
+  font-size: 18px;
+  color: #047857;
+
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   PLAY BUTTON
+================================ */
+.sleep-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.sleep-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+}
+
+/* ===============================
+   SOUND LIST
+================================ */
+.sleep-list {
+  margin-top: 25px;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sleep-item {
+  padding: 10px 16px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: #065f46;
+
+  cursor: pointer;
+  transition: 0.25s;
+
+  font-size: 14px;
+}
+
+/* ACTIVE */
+.sleep-item.active {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  box-shadow: 0 6px 18px rgba(16,185,129,0.3);
+}
+
+/* HOVER */
+.sleep-item:hover {
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   TEXT
+================================ */
+.sleep-text {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #065f46;
+  opacity: 0.7;
+}
+
+/* ===============================
+   VOLUME PANEL (RIGHT SIDE)
+================================ */
+.sleep-volume {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+  z-index: 3;
+}
+
+/* 🎚️ VERTICAL SLIDER */
+.sleep-volume input[type="range"] {
+  -webkit-appearance: none;
+
+  width: 6px;
+  height: 130px;
+
+  background: #d1fae5;
+  border-radius: 10px;
+
+  writing-mode: bt-lr;
+  transform: rotate(180deg);
+
+  cursor: pointer;
+}
+
+/* TRACK */
+.sleep-volume input[type="range"]::-webkit-slider-runnable-track {
+  background: #bbf7d0;
+  border-radius: 10px;
+}
+
+/* THUMB */
+.sleep-volume input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  background: #10b981;
+
+  cursor: pointer;
+}
+
+/* FIREFOX */
+.sleep-volume input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  .sleep-volume {
+    position: static;
+    transform: none;
+
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 20px;
+  }
+
+  .sleep-volume input[type="range"] {
+    width: 160px;
+    height: 6px;
+    transform: none;
+  }
+
+  .sleep-title {
+    font-size: 26px;
+  }
+}

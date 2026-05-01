@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-// ✅ Firestore imports
+// ✅ Firestore
 import { doc, setDoc } from "firebase/firestore";
 
-import { auth, db } from "../../Firebase"; // ✅ make sure db is exported
-import { useNavigate, Link } from "react-router-dom";
+import { auth, db } from "../../Firebase";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 import { MdEmail } from "react-icons/md";
-import { FiLock } from "react-icons/fi";
+import { FiLock, FiMic, FiHeadphones } from "react-icons/fi"; // ✅ ICONS FIXED
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
-
-
 
 import "./SignupEmail.css";
 
 const SignupEmail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const role = location.state?.role || "speaker";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,24 +36,24 @@ const SignupEmail = () => {
     try {
       setLoading(true);
 
-      // ✅ Create User in Firebase Auth
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      // ✅ Generate Anonymous Username
       const anonymousName = "User" + Math.floor(Math.random() * 10000);
 
-      // ✅ Save User in Firestore Database
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
         email: res.user.email,
+        role: role,
+        profileComplete: false,
+        issues: [],
         anonymousName: anonymousName,
         createdAt: new Date(),
       });
 
-      alert("Account Created + User Saved 🎉");
+      alert(`Account Created as ${role.toUpperCase()} 🎉`);
 
-      // ✅ Redirect to HomePage
-      navigate("/profile-setup");
+      navigate("/select-issues");
+
     } catch (error) {
       alert(error.message);
       console.log(error);
@@ -65,14 +65,33 @@ const SignupEmail = () => {
   return (
     <div className="emailSignup-page">
       <div className="emailSignup-card">
-        <h1 className="emailSignup-title">Signup with Email</h1>
 
-        <p className="emailSignup-subtitle">
-          Create your ChatApp account in seconds 🚀
-        </p>
+        {/* 🔥 HEADER WITH CLEAN ICON */}
+        <div className="signup-header-row">
+
+          {/* ICON */}
+          {role === "speaker" ? (
+            <FiMic className="signup-role-icon" />
+          ) : (
+            <FiHeadphones className="signup-role-icon" />
+          )}
+
+          {/* TEXT */}
+          <div>
+            <h1 className="emailSignup-title">
+              Signup as {role === "speaker" ? "Speaker" : "Listener"}
+            </h1>
+
+            <p className="emailSignup-subtitle">
+              Create your EmoConnect account
+            </p>
+          </div>
+
+        </div>
 
         <form onSubmit={handleSignup} className="emailSignup-form">
-          {/* Email */}
+
+          {/* EMAIL */}
           <div className="field">
             <MdEmail className="field-icon" />
             <input
@@ -84,7 +103,7 @@ const SignupEmail = () => {
             />
           </div>
 
-          {/* Password */}
+          {/* PASSWORD */}
           <div className="field password-field">
             <FiLock className="field-icon" />
 
@@ -104,15 +123,19 @@ const SignupEmail = () => {
             </span>
           </div>
 
-          {/* Button */}
+          {/* BUTTON */}
           <button type="submit" className="emailSignup-btn" disabled={loading}>
-            {loading ? "Creating..." : "Create Account"}
+            {loading
+              ? "Creating..."
+              : `Create ${role === "speaker" ? "Speaker" : "Listener"} Account`}
           </button>
+
         </form>
 
         <p className="emailSignup-footer">
           Back to <Link to="/signup">Signup Options</Link>
         </p>
+
       </div>
     </div>
   );

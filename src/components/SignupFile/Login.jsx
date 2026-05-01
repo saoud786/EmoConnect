@@ -1,8 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   signInWithEmailAndPassword,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
+  sendPasswordResetEmail
 } from "firebase/auth";
 
 import { auth, db } from "../../Firebase";
@@ -11,7 +10,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, Link } from "react-router-dom";
 
 import { MdEmail } from "react-icons/md";
-import { FiLock, FiPhone } from "react-icons/fi";
+import { FiLock } from "react-icons/fi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import "./Login.css";
@@ -19,46 +18,64 @@ import "./Login.css";
 export default function Login() {
   const navigate = useNavigate();
 
-  const [mode, setMode] = useState("email");
+  const [mode, setMode] = useState("speaker");
 
-  // Email Login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Show Password Toggle
   const [showPassword, setShowPassword] = useState(false);
 
-  // Phone Login
-  const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
-
-  const [confirmationResult, setConfirmationResult] = useState(null);
-
-  // UI
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState("");
 
-  const recaptchaRef = useRef(null);
+  // 🔥 FORGOT PASSWORD STATE
+  const [showForgot, setShowForgot] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
 
-  // Toast Helper
   const showToast = (msg) => {
     setToast(msg);
     setTimeout(() => setToast(""), 2500);
   };
 
-  // ✅ Redirect After Login (Profile Check)
+  /* ========================= */
+  /* 🔥 REDIRECT */
   const redirectUser = async (user) => {
-    const snap = await getDoc(doc(db, "users", user.uid));
+    try {
+      const snap = await getDoc(doc(db, "users", user.uid));
 
-    if (snap.exists() && snap.data().profileComplete === true) {
-      navigate("/chat"); // ✅ Profile Already Done
-    } else {
-      navigate("/profile-setup"); // ❌ First Time User
+      if (!snap.exists()) {
+        navigate("/select-issues");
+        return;
+      }
+
+      const data = snap.data();
+
+      if (data.role !== mode) {
+        showToast(`You are registered as ${data.role}`);
+        return;
+      }
+
+      if (!data.issues || data.issues.length === 0) {
+        navigate("/select-issues");
+        return;
+      }
+
+      if (!data.profileComplete) {
+        navigate("/profile-setup");
+        return;
+      }
+
+      navigate("/chat");
+
+    } catch (err) {
+      console.error(err);
+      navigate("/");
     }
   };
 
-  // ✅ Email Login
-  const handleEmailLogin = async (e) => {
+  /* ========================= */
+  /* 🔥 LOGIN */
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (password.length < 6) {
@@ -73,8 +90,10 @@ export default function Login() {
 
       showToast("Login Successful 🎉");
 
-      // ✅ Profile Check Redirect
-      setTimeout(() => redirectUser(result.user), 800);
+      setTimeout(() => {
+        redirectUser(result.user);
+      }, 800);
+
     } catch {
       showToast("Invalid Email or Password ❌");
     }
@@ -82,202 +101,151 @@ export default function Login() {
     setLoading(false);
   };
 
-  // ✅ Setup Recaptcha
-  const setupRecaptcha = () => {
-    if (window.recaptchaVerifier) return;
-
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      recaptchaRef.current,
-      { size: "invisible" },
-      auth
-    );
-  };
-
-  // ✅ Send OTP
-  const handleSendOtp = async (e) => {
-    e.preventDefault();
-
-    if (!phone.startsWith("+")) {
-      showToast("Phone must include country code (+91...)");
+  /* ========================= */
+  /* 🔥 RESET PASSWORD */
+  const handleResetPassword = async () => {
+    if (!resetEmail) {
+      showToast("Enter your email 📧");
       return;
     }
 
-    setLoading(true);
-
     try {
-      setupRecaptcha();
-
-      const result = await signInWithPhoneNumber(
-        auth,
-        phone,
-        window.recaptchaVerifier
-      );
-
-      setConfirmationResult(result);
-      showToast("OTP Sent Successfully ✅");
-    } catch {
-      showToast("OTP Failed ❌ Try Again");
+      await sendPasswordResetEmail(auth, resetEmail);
+      showToast("Reset link sent ✅");
+      setShowForgot(false);
+      setResetEmail("");
+    } catch (err) {
+      console.error(err);
+      showToast("Error sending email ❌");
     }
-
-    setLoading(false);
-  };
-
-  // ✅ Verify OTP Login
-  const handleVerifyOtp = async (e) => {
-    e.preventDefault();
-
-    if (!otp) {
-      showToast("Enter OTP first!");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const result = await confirmationResult.confirm(otp);
-
-      showToast("Phone Login Successful 🎉");
-
-      // ✅ Profile Check Redirect
-      setTimeout(() => redirectUser(result.user), 800);
-    } catch {
-      showToast("Invalid OTP ❌");
-    }
-
-    setLoading(false);
   };
 
   return (
     <div className="loginPage">
       <div className="loginCard">
-        {/* Tabs */}
+
+        {/* TABS */}
         <div className="loginTabs">
           <button
-            className={mode === "email" ? "active" : ""}
-            onClick={() => {
-              setMode("email");
-              setConfirmationResult(null);
-            }}
+            className={mode === "speaker" ? "active" : ""}
+            onClick={() => setMode("speaker")}
           >
-            Email Login
+            🗣️ Speaker Login
           </button>
 
           <button
-            className={mode === "phone" ? "active" : ""}
-            onClick={() => {
-              setMode("phone");
-              setConfirmationResult(null);
-            }}
+            className={mode === "listener" ? "active" : ""}
+            onClick={() => setMode("listener")}
           >
-            Phone Login
+            👂 Listener Login
           </button>
         </div>
 
-        {/* Title */}
+        {/* TITLE */}
         <h1 className="loginTitle">
-          {mode === "email" ? "Login with Email" : "Login with Phone"}
+          {mode === "speaker" ? "Login as Speaker" : "Login as Listener"}
         </h1>
 
         <p className="loginSubtitle">
           Secure access to your EmoConnect account
         </p>
 
-        {/* EMAIL LOGIN */}
-        {mode === "email" && (
-          <form onSubmit={handleEmailLogin} className="loginForm">
-            {/* Email */}
-            <div className="inputBox">
-              <MdEmail className="inputIcon" />
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+        {/* FORM */}
+        <form onSubmit={handleLogin} className="loginForm">
 
-            {/* Password */}
-            <div className="inputBox">
-              <FiLock className="inputIcon" />
+          {/* EMAIL */}
+          <div className="inputBox">
+            <MdEmail className="inputIcon" />
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+          {/* PASSWORD */}
+          <div className="inputBox">
+            <FiLock className="inputIcon" />
 
-              <span
-                className="eyeBtn"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <AiOutlineEyeInvisible />
-                ) : (
-                  <AiOutlineEye />
-                )}
-              </span>
-            </div>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-            <button className="loginBtn" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
-        )}
+            <span
+              className="eyeBtn"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </span>
+          </div>
 
-        {/* PHONE LOGIN */}
-        {mode === "phone" && (
-          <>
-            <div ref={recaptchaRef}></div>
+          {/* 🔥 FORGOT PASSWORD */}
+          <p className="forgotPassword" onClick={() => setShowForgot(true)}>
+            Forgot Password?
+          </p>
 
-            {!confirmationResult ? (
-              <form onSubmit={handleSendOtp} className="loginForm">
-                <div className="inputBox">
-                  <FiPhone className="inputIcon" />
-                  <input
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                  />
-                </div>
+          {/* BUTTON */}
+          <button className="loginBtn" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
-                <button className="loginBtn" disabled={loading}>
-                  {loading ? "Sending OTP..." : "Send OTP"}
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleVerifyOtp} className="loginForm">
-                <div className="inputBox">
-                  <FiLock className="inputIcon" />
-                  <input
-                    type="text"
-                    placeholder="Enter OTP"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    required
-                  />
-                </div>
+        </form>
 
-                <button className="loginBtn" disabled={loading}>
-                  {loading ? "Verifying..." : "Verify OTP"}
-                </button>
-              </form>
-            )}
-          </>
-        )}
-
-        {/* Footer */}
+        {/* FOOTER */}
         <p className="loginFooter">
           <Link to="/signup">Create Account</Link> ·{" "}
           <Link to="/readmore">About</Link>
         </p>
+
       </div>
 
-      {/* Toast */}
+      {/* 🔥 MODAL */}
+    {/* 🔥 FORGOT PASSWORD MODAL */}
+{showForgot && (
+  <div className="forgotOverlay">
+
+    <div className="forgotModal">
+
+      <button
+        className="closeBtn"
+        onClick={() => setShowForgot(false)}
+      >
+        ✕
+      </button>
+
+      <h2>Reset Password</h2>
+
+      <p className="forgotSub">
+        Enter your email and we'll send you a reset link
+      </p>
+
+      <input
+        type="email"
+        placeholder="Enter your email"
+        value={resetEmail}
+        onChange={(e) => setResetEmail(e.target.value)}
+        className="forgotInput"
+      />
+
+      <button
+        className="sendBtn"
+        onClick={handleResetPassword}
+      >
+        Send Reset Link
+      </button>
+
+    </div>
+
+  </div>
+)}
+
+      {/* TOAST */}
       {toast && <div className="toastBox">{toast}</div>}
     </div>
   );

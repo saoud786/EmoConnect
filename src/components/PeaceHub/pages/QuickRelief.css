@@ -1,0 +1,328 @@
+/* ===============================
+   MAIN CONTAINER (FIXED CLEAN)
+================================ */
+.relief-container {
+  width: 100%;
+
+  height: auto;
+  min-height: auto;
+
+  display: block;
+
+  padding: 16px 20px;
+
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌿 SOFT BACKGROUND */
+.relief-container::before {
+  content: "";
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  background: radial-gradient(circle, rgba(16,185,129,0.12), transparent);
+  filter: blur(70px);
+
+  top: 20%;
+  left: 40%;
+}
+
+/* ===============================
+   CONTENT
+================================ */
+.relief-content {
+  width: 100%;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.relief-title {
+  font-size: 26px;
+  font-weight: 700;
+
+  color: #065f46;
+  margin-top: 1px;
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   IMAGE
+================================ */
+.relief-image {
+  margin: 10px 0;
+}
+
+.relief-image img {
+  width: 300px;
+  height: 200px;
+
+  object-fit: cover;
+
+  display: block;
+  margin: 0 auto;
+
+  border-radius: 16px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.relief-image img:hover {
+  transform: scale(1.03);
+}
+
+/* ===============================
+   NAME
+================================ */
+.relief-name {
+  font-size: 17px;
+  font-weight: 600;
+
+  color: #047857;
+  margin-bottom: 4px;
+}
+
+/* ===============================
+   DESCRIPTION
+================================ */
+.relief-desc {
+  font-size: 13px;
+  color: #065f46;
+  opacity: 0.8;
+
+  max-width: 360px;
+  margin: 0 auto 14px;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.relief-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 18px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.relief-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(16,185,129,0.25);
+}
+
+/* ===============================
+   LIST (SCROLL)
+================================ */
+.relief-list {
+  margin-top: 18px;
+
+  display: flex;
+  flex-wrap: nowrap;
+
+  justify-content: flex-start;
+  gap: 8px;
+
+  overflow-x: auto;
+  padding: 6px 10px;
+
+  scroll-behavior: smooth;
+}
+
+.relief-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===============================
+   ITEMS
+================================ */
+.relief-item {
+  padding: 7px 14px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #065f46;
+  font-size: 13px;
+
+  cursor: pointer;
+  transition: 0.25s;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.relief-item.active {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  box-shadow: 0 5px 14px rgba(16,185,129,0.2);
+}
+
+.relief-item:hover {
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   TEXT
+================================ */
+.relief-text {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #065f46;
+  opacity: 0.7;
+}
+
+/* ===============================
+   🔥 MODAL (IMAGE PREVIEW)
+================================ */
+.relief-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  /* background: rgba(0, 0, 0, 0.55); */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* backdrop-filter: blur(8px); */
+
+  z-index: 999;
+}
+
+/* MODAL BOX */
+.relief-modal-box {
+  background: #ffffff;
+
+  padding: 20px;
+  border-radius: 22px;
+
+  width: 90%;
+  max-width: 650px;
+
+  position: relative;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+
+  overflow: hidden;
+
+  animation: popup 0.25s ease;
+}
+
+/* IMAGE */
+.relief-modal-img {
+  width: 100%;
+  max-height: 70vh;
+
+  object-fit: contain;
+
+  border-radius: 16px;
+
+  display: block;
+}
+
+/* CLOSE BUTTON */
+.relief-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.relief-close:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .relief-title {
+    font-size: 22px;
+  }
+
+  .relief-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .relief-image img {
+    width: 220px;
+    height: 160px;
+  }
+}

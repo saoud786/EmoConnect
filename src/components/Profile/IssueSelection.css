@@ -1,0 +1,103 @@
+.issue-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at top, #eef2ff, #ffffff);
+}
+/* 🔥 GENERAL TALK DEFAULT */
+.issue-btn.general-talk {
+  border: 1.5px dashed #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+  color: #2563eb;
+}
+
+/* 🔥 HOVER (NORMAL STATE) */
+.issue-btn.general-talk:hover {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+/* 🔥 ACTIVE */
+.issue-btn.general-talk.active {
+  background: #3b82f6;
+  color: #fff;
+  border: 1.5px solid #3b82f6;
+}
+
+/* 🔥 FIX: ACTIVE + HOVER (IMPORTANT) */
+.issue-btn.general-talk.active:hover {
+  background: #3b82f6;  /* same rahe */
+  color: #fff;
+}
+.issue-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+
+  background: white;
+  border-radius: 20px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.issue-card h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* GRID */
+.issue-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* BUTTON */
+.issue-btn {
+  padding: 10px 16px;
+  border-radius: 20px;
+
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.issue-btn:hover {
+  background: #eef2ff;
+}
+
+.issue-btn.active {
+  background: #0f172a;
+  color: white;
+  border-color: #0f172a;
+}
+
+/* SAVE BUTTON */
+.save-btn {
+  margin-top: 24px;
+  width: 100%;
+  padding: 14px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: #0f172a;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}

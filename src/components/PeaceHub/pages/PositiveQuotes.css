@@ -1,0 +1,171 @@
+/* ===============================
+   MAIN CONTAINER
+================================ */
+.quotes-container {
+  width: 100%;
+  height: auto;
+
+  padding: 30px 20px;
+
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌿 SOFT BACKGROUND GLOW */
+.quotes-container::before {
+  content: "";
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  background: radial-gradient(circle, rgba(16,185,129,0.15), transparent);
+  filter: blur(80px);
+
+  top: 20%;
+  left: 40%;
+}
+
+/* ===============================
+   CONTENT
+================================ */
+.quotes-content {
+  width: 100%;
+  max-width: 600px;
+
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.quotes-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #065f46;
+
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   CARD (GLASS STYLE)
+================================ */
+.quotes-card {
+  padding: 30px 25px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+
+  margin-bottom: 25px;
+
+  transition: 0.3s ease;
+}
+
+.quotes-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   TEXT
+================================ */
+.quotes-text {
+  font-size: 18px;
+  font-weight: 500;
+
+  color: #047857;
+
+  line-height: 1.7;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.quotes-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.quotes-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16,185,129,0.3);
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.quotes-footer {
+  margin-top: 18px;
+  font-size: 13px;
+
+  color: #065f46;
+  opacity: 0.7;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  .quotes-title {
+    font-size: 24px;
+  }
+
+  .quotes-text {
+    font-size: 16px;
+  }
+
+  .quotes-card {
+    padding: 22px 18px;
+  }
+
+  .quotes-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

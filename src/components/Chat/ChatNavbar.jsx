@@ -7,6 +7,7 @@ import { auth, db } from "../../Firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import { ThemeContext } from "../Theme/ThemeContext.jsx";
+import Requests from "./Requests"; // ✅ NEW
 
 import {
   User,
@@ -15,12 +16,13 @@ import {
   Sun,
   LogOut,
   MoreVertical,
-  MessageCircle
+  MessageCircle,
+  Bell
 } from "lucide-react";
 
 import "./ChatNavbar.css";
 
-export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
+export default function ChatNavbar() {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,14 +35,17 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
   const [photoURL, setPhotoURL] = useState("");
   const [logoAnimate, setLogoAnimate] = useState(false);
 
-  // ✅ NEW STATE (Support Modal)
+  // ✅ Requests toggle
+  const [showRequests, setShowRequests] = useState(false);
+  const bellRef = useRef(null);
+
+  // ✅ Support Modal
   const [showSupportModal, setShowSupportModal] = useState(false);
   const [supportText, setSupportText] = useState("");
 
   /* =========================
      Logout
   ========================= */
-
   const handleLogout = async () => {
     await signOut(auth);
     navigate("/login");
@@ -49,7 +54,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
   /* =========================
      Avatar Listener
   ========================= */
-
   useEffect(() => {
     if (!auth.currentUser) return;
 
@@ -68,11 +72,14 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
   /* =========================
      Outside Click
   ========================= */
-
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
+      }
+
+      if (bellRef.current && !bellRef.current.contains(e.target)) {
+        setShowRequests(false);
       }
     };
 
@@ -88,33 +95,42 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
     <>
       <nav className="chat-navbar">
 
-        {/* LEFT SECTION */}
+        {/* LEFT */}
         <div className="left-section">
 
-
-
-
-<div
-  className={`chat-logo ${logoAnimate ? "animate" : ""}`}
-  onClick={() => {
-    setLogoAnimate(true);
-
-    setTimeout(() => {
-      setLogoAnimate(false);
-      navigate("/chat");
-    }, 700); // ⬅️ animation duration ke equal
-  }}
->
-  <img src="/logo.png" alt="logo" className="logo-img" />
-  <span className="logo-text">EmoConnect</span>
-</div>
-
-
+          <div
+            className={`chat-logo ${logoAnimate ? "animate" : ""}`}
+            onClick={() => {
+              setLogoAnimate(true);
+              setTimeout(() => {
+                setLogoAnimate(false);
+                navigate("/chat");
+              }, 700);
+            }}
+          >
+            <img src="/logo.png" alt="logo" className="logo-img" />
+            <span className="logo-text">EmoConnect</span>
+          </div>
 
         </div>
 
-        {/* RIGHT SECTION */}
+        {/* RIGHT */}
         <div className="chat-actions">
+
+          {/* 🔔 REQUEST ICON */}
+          <div className="bell-wrapper" ref={bellRef}>
+  <button
+    className={`icon-btn ${showRequests ? "active" : ""}`}
+    onClick={() => setShowRequests(!showRequests)}
+  >
+    <Bell size={20} />
+    <span className="bell-dot"></span> {/* optional glow dot */}
+  </button>
+
+  {showRequests && (
+    <Requests onClose={() => setShowRequests(false)} />
+  )}
+</div>
 
           {/* Avatar */}
           <Link
@@ -133,9 +149,8 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
             />
           </Link>
 
-          {/* Dropdown */}
+          {/* MENU */}
           <div className="menu-wrapper" ref={menuRef}>
-
             <button
               className="menu-btn"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -146,7 +161,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
             {menuOpen && (
               <div className="dropdown-menu">
 
-                {/* My Profile */}
                 <button onClick={() => {
                   navigate("/profile");
                   setMenuOpen(false);
@@ -155,7 +169,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
                   <span>My Profile</span>
                 </button>
 
-                {/* Edit Profile */}
                 <button onClick={() => {
                   navigate("/profile-setup");
                   setMenuOpen(false);
@@ -164,7 +177,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
                   <span>Edit Profile</span>
                 </button>
 
-                {/* Dark Mode */}
                 <button onClick={() => {
                   toggleTheme();
                   setMenuOpen(false);
@@ -182,7 +194,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
                   )}
                 </button>
 
-                {/* ✅ Contact Admin (WORKING) */}
                 <button
                   onClick={() => {
                     setShowSupportModal(true);
@@ -195,7 +206,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
 
                 <hr/>
 
-                {/* Logout */}
                 <button
                   className="logout-item"
                   onClick={() => {
@@ -214,10 +224,9 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
         </div>
       </nav>
 
-      {/* ✅ SUPPORT MODAL */}
+      {/* SUPPORT MODAL */}
       {showSupportModal && (
         <div className="support-overlay">
-
           <div className="support-box">
 
             <h3>Contact Admin</h3>
@@ -239,7 +248,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
                   }
 
                   alert("Request sent ✅");
-
                   setSupportText("");
                   setShowSupportModal(false);
                 }}
@@ -257,7 +265,6 @@ export default function ChatNavbar({ toggleSidebar, sidebarOpen }) {
             </div>
 
           </div>
-
         </div>
       )}
     </>

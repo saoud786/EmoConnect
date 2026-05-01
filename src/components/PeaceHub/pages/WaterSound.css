@@ -1,0 +1,277 @@
+/* ===============================
+   MAIN CONTAINER
+================================ */
+.water-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌧️ SOFT ANIMATION */
+.water-container::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.12) 2px,
+    transparent 2px
+  );
+
+  background-size: 40px 40px;
+  animation: rainMove 6s linear infinite;
+}
+
+@keyframes rainMove {
+  from { transform: translateY(-20px); }
+  to { transform: translateY(20px); }
+}
+
+/* ===============================
+   CENTER CONTENT
+================================ */
+.water-center {
+  width: 100%;
+  max-width: 600px;
+
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.water-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 15px;
+}
+
+/* ===============================
+   SOUND NAME
+================================ */
+.water-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #047857;
+  margin-bottom: 18px;
+}
+
+/* ===============================
+   PLAY BUTTON
+================================ */
+.water-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 22px;
+
+  border-radius: 14px;
+  border: none;
+
+  cursor: pointer;
+  font-weight: 600;
+
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  transition: 0.25s ease;
+}
+
+.water-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(16,185,129,0.3);
+}
+
+/* ===============================
+   TIMER
+================================ */
+.water-timer {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #059669;
+}
+
+/* ===============================
+   TIMER OPTIONS
+================================ */
+.water-timer-options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.water-timer-options button {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255,255,255,0.9);
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.water-timer-options button:hover {
+  background: #bbf7d0;
+}
+
+/* ===============================
+   SOUND LIST
+================================ */
+.water-list {
+  margin-top: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.water-item {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255,255,255,0.9);
+
+  cursor: pointer;
+  transition: 0.25s;
+  font-size: 14px;
+}
+
+.water-item.active {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+  box-shadow: 0 8px 20px rgba(16,185,129,0.25);
+}
+
+.water-item:hover {
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   TEXT
+================================ */
+.water-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #065f46;
+  opacity: 0.7;
+}
+
+/* ===============================
+   RIGHT SIDE VOLUME PANEL
+================================ */
+.water-volume-panel {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  padding: 18px 14px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+
+  z-index: 3;
+}
+
+/* ✅ FIXED VERTICAL SLIDER (NO ROTATE BUG) */
+.water-volume-panel input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 6px;
+  height: 130px;
+
+  background: #d1fae5;
+  border-radius: 10px;
+
+  writing-mode: vertical-lr;
+  direction: rtl;
+
+  cursor: pointer;
+}
+
+/* 🎚️ THUMB */
+.water-volume-panel input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  background: #10b981;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  .water-volume-panel {
+    position: static;
+    transform: none;
+
+    flex-direction: row;
+    justify-content: center;
+
+    margin-bottom: 20px;
+  }
+
+  .water-volume-panel input[type="range"] {
+    width: 150px;
+    height: 6px;
+
+    writing-mode: horizontal-tb;
+    direction: ltr;
+  }
+}

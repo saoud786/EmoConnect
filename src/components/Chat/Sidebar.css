@@ -6,8 +6,7 @@
   display: flex;
   justify-content: center;
   padding: 32px 0;
-    background: #ffffff;   /* ADD THIS */
-
+  background: #ffffff;
 }
 
 /* ===============================
@@ -95,218 +94,72 @@
   pointer-events: none;
 }
 
-.side-btn:hover .tooltip {
-  opacity: 1;
-  transform: translateX(0);
-}
+
+
+
+
+
+
+
+
+
+
 
 /* ===============================
-   BELL WRAPPER
+   💚 PEACE MODE SIDEBAR (ONLY PEACE)
 ================================ */
-.bell-wrapper {
-  position: relative;
+.chat-sidebar.sidebar-peace {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 78, 59, 0.95),
+    rgba(2, 44, 34, 0.98)
+  ) !important;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-right: none;
 }
 
-/* Notification Badge */
-.notification-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-
-  background: #ef4444;
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.4);
+/* remove white card look */
+.chat-sidebar.sidebar-peace .sidebar-icons {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* ===============================
-   REQUEST DROPDOWN
-================================ */
-.request-dropdown {
+/* icon default */
+.sidebar-peace .side-btn {
+  background: transparent;
+  color: #a7f3d0;
+}
 
-  position: fixed;        /* important fix */
+/* hover */
+.sidebar-peace .side-btn:hover {
+  background: rgba(34, 197, 94, 0.15);
+  color: #ffffff;
+  transform: scale(1.05);
+}
 
-  left: 110px;            /* sidebar ke baad */
-  top: 150px;             /* bell icon ke level par */
+/* active normal */
+.sidebar-peace .side-btn.active {
+  background: rgba(37, 173, 132, 0.281);
+  color: #ffffff;
+}
 
-  width: 320px;
-  max-height: 420px;
-  overflow-y: auto;
+/* 💚 special peace active button */
+.sidebar-peace .side-btn.active::before {
+  display: none; /* remove blue line */
+}
 
-  padding: 24px;
-  border-radius: 20px;
-
-  background: #ffffff;
-
+.sidebar-peace .side-btn.active {
   box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.12),
-    0 10px 25px rgba(0, 0, 0, 0.08);
-
-  animation: requestFloatIn .45s cubic-bezier(.22,.8,.3,1);
-
-  z-index: 5000;          /* chat se upar rahe */
+    0 8px 20px rgba(215, 219, 216, 0);
 }
 
-.request-dropdown h4 {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 18px;
-  color: #0f172a;
-}
-@keyframes requestFloatIn {
 
-  0%{
-    opacity:0;
-    transform:translateY(18px) scale(.96);
-    filter:blur(2px);
-  }
 
-  60%{
-    opacity:1;
-    transform:translateY(-2px) scale(1.01);
-    filter:blur(0);
-  }
 
-  100%{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
 
-}
-.request-dropdown{
-  transform-origin:left top;
-  will-change:transform, opacity;
-}
-/* ===============================
-   REQUEST CARD
-================================ */
-.request-dropdown .request-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  padding: 14px;
-  border-radius: 16px;
-  margin-bottom: 12px;
-
-  background: #f8fafc;
-  transition: all 0.25s ease;
-}
-
-.request-dropdown .request-item:hover {
-  background: #eef2ff;
-  transform: translateY(-2px);
-}
-
-/* Left Section */
-.request-dropdown .request-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 0;
-}
-
-/* Avatar */
-.request-dropdown .request-avatar,
-.request-dropdown .request-avatar-img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-}
-
-.request-dropdown .request-avatar {
-  background: linear-gradient(135deg, #60a5fa, #3b82f6);
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.request-dropdown .request-avatar-img {
-  object-fit: cover;
-}
-
-/* Info */
-.request-dropdown .request-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-}
-
-.request-dropdown .request-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0f172a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.request-dropdown .request-sub {
-  font-size: 12px;
-  color: #64748b;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Buttons */
-.request-dropdown .req-actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.request-dropdown .accept-btn,
-.request-dropdown .reject-btn {
-  padding: 6px 14px;
-  border-radius: 18px;
-  font-size: 12px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.request-dropdown .accept-btn {
-  background: #2563eb;
-  color: white;
-}
-
-.request-dropdown .accept-btn:hover {
-  background: #1d4ed8;
-}
-
-.request-dropdown .reject-btn {
-  background: #f1f5f9;
-  color: #ef4444;
-}
-
-.request-dropdown .reject-btn:hover {
-  background: #fee2e2;
-}
-
-.request-dropdown .no-req {
-  text-align: center;
-  padding: 18px 0;
-  font-size: 14px;
-  color: #64748b;
-}
 
 /* ===============================
    MOBILE BOTTOM NAV
@@ -338,71 +191,4 @@
   .tooltip {
     display: none;
   }
-
-  .request-dropdown {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-
-
-/* ===============================
-   REQUEST HEADER
-================================ */
-.request-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-/* Close button */
-.request-close-btn {
-  background: #f1f5f9;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.request-close-btn:hover {
-  background: #e2e8f0;
-  transform: scale(1.05);
-}
-
-
-/* ===============================
-   REQUEST HEADER
-================================ */
-.request-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.request-close-btn {
-  background: #f1f5f9;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.request-close-btn:hover {
-  background: #e2e8f0;
-  transform: scale(1.05);
 }

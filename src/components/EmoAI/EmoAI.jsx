@@ -12,15 +12,44 @@ export default function EmoAI({ setView }) {
   }, [chat, loading]);
 
   const sendMessage = async () => {
-    if (!message.trim()) return;
+    if (!message.trim() || loading) return;
 
-    const userMessage = message;
+    const userMessage = message.trim();
 
-    setChat((prev) => [...prev, { type: "user", text: userMessage }]);
+    const updatedChat = [...chat, { type: "user", text: userMessage }];
+    setChat(updatedChat);
     setMessage("");
     setLoading(true);
 
     try {
+      const currentTime = new Date().toLocaleTimeString();
+
+      const messages = [
+        {
+          role: "system",
+          content: `
+You are EmoAI, a smart and friendly assistant.
+
+Current time: ${currentTime}
+
+Rules:
+- ALWAYS reply in simple English
+- ALWAYS answer the user's message directly
+- If user says "hello" → greet naturally
+- If user says "how are you" → respond normally
+- If user asks time → tell correct time
+- Keep replies short (1-2 lines)
+- Do NOT repeat phrases
+- Do NOT say "I don't understand" for simple messages
+- Sound like a real human, not a therapist
+`,
+        },
+        ...updatedChat.map((msg) => ({
+          role: msg.type === "user" ? "user" : "assistant",
+          content: msg.text,
+        })),
+      ];
+
       const response = await fetch(
         "https://openrouter.ai/api/v1/chat/completions",
         {
@@ -30,41 +59,65 @@ export default function EmoAI({ setView }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "mistralai/mistral-7b-instruct",
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are EmoAI, a calm and emotionally supportive assistant. Respond gently, positively, and with empathy. Do not give medical diagnosis.",
-              },
-              {
-                role: "user",
-                content: userMessage,
-              },
-            ],
+            model: "meta-llama/llama-3-8b-instruct", // 🔥 better English handling
+            messages,
+            temperature: 0.8,
+            top_p: 0.9,
+            max_tokens: 120,
           }),
         }
       );
 
       const data = await response.json();
 
-      const text =
-        data?.choices?.[0]?.message?.content || "I'm here for you 💙";
+      let aiText =
+        data?.choices?.[0]?.message?.content?.trim() || "";
 
-      setChat((prev) => [...prev, { type: "ai", text }]);
+      // 🔥 CLEAN BAD RESPONSES
+      if (
+        !aiText ||
+        aiText.toLowerCase().includes("i don't understand") ||
+        aiText.length < 2
+      ) {
+        const fallbackReplies = [
+          "Hey 🙂 what's up?",
+          "Tell me more 🙂",
+          "I'm here, go on 🙂",
+        ];
+        aiText =
+          fallbackReplies[
+            Math.floor(Math.random() * fallbackReplies.length)
+          ];
+      }
+
+      // 🔥 HUMAN DELAY
+      const delay = 500 + Math.random() * 1000;
+
+      setTimeout(() => {
+        setChat((prev) => [...prev, { type: "ai", text: aiText }]);
+        setLoading(false);
+      }, delay);
     } catch (error) {
-      console.error("OpenRouter Error:", error);
+      console.error("AI Error:", error);
+
+      const fallbackReplies = [
+        "Network issue... try again",
+        "Something went wrong... send again",
+      ];
 
       setChat((prev) => [
         ...prev,
         {
           type: "ai",
-          text: "⚠️ Something went wrong. Please try again.",
+          text:
+            fallbackReplies[
+              Math.floor(Math.random() * fallbackReplies.length)
+            ],
         },
       ]);
-    }
 
-    setLoading(false);
+      setLoading(false);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -73,30 +126,27 @@ export default function EmoAI({ setView }) {
 
   return (
     <div className="emoai-container">
-      
       {/* HEADER */}
-    <div className="emoai-header">
+      <div className="emoai-header">
+        <button
+          className="mobile-back-btn"
+          onClick={() => setView("chat")}
+        >
+          ←
+        </button>
 
-  <button
-    className="mobile-back-btn"
-    onClick={() => setView("chat")}
-  >
-    ←
-  </button>
+        <div className="emoai-header-text">
+          <h2>EmoAI 🤖</h2>
+          <p>Your private emotional support assistant</p>
+        </div>
+      </div>
 
-  <div className="emoai-header-text">
-    <h2>EmoAI 🤖</h2>
-    <p>Your private emotional support assistant</p>
-  </div>
-
-</div>
-
-      {/* CHAT AREA */}
+      {/* CHAT */}
       <div className="emoai-chat">
         {chat.length === 0 && (
           <div className="welcome-msg">
-            Welcome to EmoAI 💙 <br />
-            Share your thoughts. I'm here to support you.
+            Hey 👋 <br />
+            What's on your mind? 🙂
           </div>
         )}
 
@@ -113,7 +163,7 @@ export default function EmoAI({ setView }) {
 
         {loading && (
           <div className="chat-bubble ai-bubble typing">
-            EmoAI is thinking...
+            typing...
           </div>
         )}
 
@@ -124,15 +174,16 @@ export default function EmoAI({ setView }) {
       <div className="emoai-input">
         <input
           type="text"
-          placeholder="Share your thoughts..."
+          placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyPress}
         />
 
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={sendMessage} disabled={loading}>
+          {loading ? "..." : "Send"}
+        </button>
       </div>
-
     </div>
   );
 }

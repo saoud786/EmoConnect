@@ -35,9 +35,20 @@ import ProtectedRoute from "./components/Protected/ProtectedRoute";
 import ProfileSetup from "./components/Profile/ProfileSetup";
 import Profile from "./components/Profile/Profile";
 
+/* ✅ Issue Selection */
+import IssueSelection from "./components/Profile/IssueSelection";
+
+/* ✅ Admin */
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminProtectedRoute from "./components/Protected/AdminProtectedRoute";
+
+/* ✅ Random Chat */
+import RandomPage from "./components/Random/RandomPage";
+
+/* ✅ NEW 🔥 Peace Hub */
+import PeaceHub from "./components/PeaceHub/PeaceHub";
+
 /* ================================
    ✅ Router Setup
 ================================ */
@@ -103,9 +114,72 @@ const router = createBrowserRouter([
   },
 
   /* ================================
-     ✅ Protected Chat Area
+     🔥 ISSUE SELECTION
   ================================ */
+  {
+    path: "/select-issues",
+    element: (
+      <ProtectedRoute>
+        <ThemeProvider>
+          <ChatNavbar />
+          <IssueSelection />
+        </ThemeProvider>
+      </ProtectedRoute>
+    ),
+  },
 
+  /* ================================
+     🎲 RANDOM CHAT
+  ================================ */
+  {
+    path: "/random",
+    element: (
+      <ProtectedRoute>
+        <ThemeProvider>
+          <div className="chat-layout">
+            <ChatNavbar />
+            <RandomPage />
+          </div>
+        </ThemeProvider>
+      </ProtectedRoute>
+    ),
+  },
+
+  /* ================================
+     💚 PEACE HUB (NEW FEATURE)
+  ================================ */
+  {
+    path: "/peace",
+    element: (
+      <ProtectedRoute>
+        <ThemeProvider>
+          <div className="chat-layout">
+            <ChatNavbar />
+            <PeaceHub />
+          </div>
+        </ThemeProvider>
+      </ProtectedRoute>
+    ),
+  },
+
+  /* ================================
+     👤 PROFILE SETUP
+  ================================ */
+  {
+    path: "/profile-setup",
+    element: (
+      <ProtectedRoute>
+        <ThemeProvider>
+          <ChatNavbar />
+          <ProfileSetup />
+        </ThemeProvider>
+      </ProtectedRoute>
+    ),
+  },
+
+  /* ================================
+     💬 CHAT
+  ================================ */
   {
     path: "/chat",
     element: (
@@ -130,56 +204,41 @@ const router = createBrowserRouter([
     ),
   },
 
+  /* ================================
+     🛡️ ADMIN
+  ================================ */
   {
-    path: "/profile-setup",
+    path: "/admin",
     element: (
-      <ProtectedRoute>
+      <AdminProtectedRoute>
         <ThemeProvider>
           <ChatNavbar />
-          <ProfileSetup />
+          <AdminDashboard />
         </ThemeProvider>
-      </ProtectedRoute>
+      </AdminProtectedRoute>
     ),
   },
 
-
-/*Admin Dashboard*/
-{
-  path: "/admin",
-  element: (
-    <AdminProtectedRoute>
-      <ThemeProvider>
-        <ChatNavbar />
-        <AdminDashboard />
-      </ThemeProvider>
-    </AdminProtectedRoute>
-  ),
-},
-
-{
-  path: "/admin-login",
-  element: (
-    <>
-      <Navbar />
-      <AdminLogin />
-    </>
-  ),
-}, 
-
+  {
+    path: "/admin-login",
+    element: (
+      <>
+        <Navbar />
+        <AdminLogin />
+      </>
+    ),
+  },
 ]);
 
 /* ================================
    ✅ Main App Component
 ================================ */
 export default function App() {
-  // ✅ Presence Tracker (Professional)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // ✅ User logged in → Online
         setUserOnline(user.uid);
 
-        // ✅ When tab closes → Offline + LastSeen
         const handleClose = () => {
           setUserOffline(user.uid);
         };

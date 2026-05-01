@@ -22,15 +22,30 @@ body {
 ================================ */
 
 .chat-layout {
-
   display: flex;
-
-  height: calc(100dvh - 72px); /* navbar height */
-
+  height: calc(100dvh - 72px);
   background: radial-gradient(circle at top, #eaf4ff, #ffffff);
+  overflow: hidden; /* 🔥 FIX (important) */
+}
 
-  overflow: visible ;
+/* 💚 PEACE MODE FULL HEIGHT FIX */
+body.peace-active .chat-layout {
+  height: 100dvh !important;
+}
+/* ===============================
+   💚 PEACE MODE FULL FIX
+================================ */
 
+/* full screen + remove white */
+body.peace-active .chat-layout {
+  height: 100dvh !important;
+  background: transparent !important; /* 🔥 remove white */
+}
+
+/* fix overlapping issue */
+body.peace-active .chat-main {
+  height: 100% !important;
+  overflow: hidden;
 }
 
 /* ===============================
@@ -87,6 +102,25 @@ body {
   overflow: hidden;
 
 }
+.random-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.random-full {
+  flex: 1;
+}
+
+
+/* ===============================
+   💚 REMOVE NAVBAR SPACE
+================================ */
+body.peace-active .chat-layout {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 
 /* ===============================
    TABLET

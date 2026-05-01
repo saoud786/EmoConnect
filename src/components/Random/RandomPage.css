@@ -1,0 +1,147 @@
+/* 🔥 MAIN LAYOUT */
+.random-page {
+  display: flex;
+  height: 100%; /* ✅ FIXED (100vh hata diya) */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ✅ RIGHT SIDE (MAIN AREA) */
+.random-main {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  min-height: 0; /* 🔥 CRITICAL FIX */
+}
+
+/* 🔥 FULL CHAT WRAPPER */
+.full-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* 🔥 MOST IMPORTANT */
+}
+
+/* 🔥 CHAT WRAPPER */
+.chat-wrapper {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  min-height: 0; /* 🔥 ADD THIS */
+}
+
+/* ========================= */
+/* 🔥 START / LOADING SCREEN */
+
+.random-start,
+.random-loading {
+  width: 100%;
+  max-width: 420px;
+
+  margin: auto; /* ✅ PERFECT CENTER (NO FLEX BREAK) */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+/* 🔥 TITLE */
+.random-start h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+/* 🔥 DESCRIPTION */
+.random-start p {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* 🔥 BUTTON */
+.random-start button {
+  padding: 12px 26px;
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+/* HOVER */
+.random-start button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.35);
+}
+
+/* CLICK */
+.random-start button:active {
+  transform: scale(0.97);
+}
+
+/* ========================= */
+/* 🔥 LOADING */
+
+.random-loading {
+  align-items: center;
+  text-align: center;
+}
+
+/* SPINNER */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================= */
+/* 📱 TABLET */
+
+@media (max-width: 1024px) {
+  .random-main {
+    padding: 20px;
+  }
+}
+
+/* 📱 MOBILE */
+
+@media (max-width: 768px) {
+  .random-page {
+    flex-direction: column;
+  }
+
+  .random-main {
+    padding: 16px;
+  }
+
+  .random-start h2 {
+    font-size: 24px;
+  }
+
+  .random-start p {
+    font-size: 14px;
+  }
+
+  .random-start button {
+    width: 100%;
+  }
+}

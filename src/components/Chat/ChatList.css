@@ -2,9 +2,10 @@
    CHAT LIST - MAIN CONTAINER
 ================================ */
 .chat-list {
-  width: 280px;
-  min-width: 280px;
-  max-width: 280px;
+   flex: 0 0 220px;   /* 👈 main control */
+  width: 220px;
+  min-width: 0;      /* 👈 fix */
+  max-width: 220px;
   height: 100%;
   padding: 30px 20px;
 

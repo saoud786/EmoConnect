@@ -1,0 +1,283 @@
+/* ===============================
+   RANDOM CHAT LIST - MAIN
+================================ */
+.random-list {
+  width: 300px;
+  min-width: 306.6px;
+  max-width: 300px;
+  height: 100%;
+
+  padding: 24px 16px;
+
+  background: #ffffff;
+
+  border-left: 1px solid #eef2f7;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.03);
+border-right: 1px solid #e2e8f0;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.random-list-header {
+  margin-bottom: 12px;
+}
+
+.random-list-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.random-list-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.random-list-empty {
+  text-align: center;
+  margin-top: 60px;
+  color: #64748b;
+}
+.back-btn1 {
+  width: 100%;
+  margin: 12px 0;
+
+  padding: 12px;
+
+  /* 🎨 PROFESSIONAL GRADIENT */
+background: linear-gradient(135deg, #3d47f7cd, #1dbbffd3);
+
+  border: none;
+  border-radius: 12px;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  cursor: pointer;
+
+  /* ✨ SHADOW */
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+
+  transition: all 0.25s ease;
+}
+
+/* 🔥 HOVER */
+.back-btn1:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* 🔥 CLICK */
+.back-btn1:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+.random-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.random-list-empty h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.random-list-empty p {
+  font-size: 13px;
+}
+
+/* ===============================
+   CHAT CARD (MAIN UI 🔥)
+================================ */
+.random-chat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px;
+  margin-bottom: 10px;
+
+  border-radius: 16px;
+  cursor: pointer;
+
+  background: #ffffff;
+  border: 1px solid #eef2f7;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* 🔥 HOVER */
+.random-chat-item:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+}
+
+/* 🔥 ACTIVE */
+.random-chat-item.active {
+  background: #eef2ff;
+  border: 1px solid #6366f1;
+
+  box-shadow: 0 8px 20px rgba(99,102,241,0.15);
+}
+
+/* ===============================
+   AVATAR
+================================ */
+.random-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #818cf8, #6366f1);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ===============================
+   USER INFO
+================================ */
+.random-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.random-info h4 {
+  font-size: 15px;
+  margin: 0 0 4px 0;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* MESSAGE */
+.random-info p {
+  font-size: 13px;
+  color: #64748b;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===============================
+   SMALL POLISH
+================================ */
+.random-chat-item:last-child {
+  margin-bottom: 0;
+}
+/* HEADER FIX */
+.random-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SUBTITLE */
+.random-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 10px;
+  margin-bottom: 22px;
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #6366f1;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #4f46e5;
+}
+
+/* DONE */
+.done-btn {
+  background: none;
+  border: none;
+  color: #6366f1;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CHECKBOX */
+.select-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  accent-color: #6366f1;
+}
+
+/* DELETE BUTTON */
+.delete-selected-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete-selected-btn:hover {
+  background: #dc2626;
+}
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+  .random-list {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .random-chat-item {
+    padding: 16px;
+  }
+
+  .random-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .random-info h4 {
+    font-size: 16px;
+  }
+
+  .random-info p {
+    font-size: 14px;
+  }
+}

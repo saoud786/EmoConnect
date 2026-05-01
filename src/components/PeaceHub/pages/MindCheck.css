@@ -1,0 +1,358 @@
+/* ===============================
+   MAIN CONTAINER
+================================ */
+.mind-container {
+  width: 100%;
+  padding: 30px 20px;
+
+  display: flex;
+  justify-content: center;
+
+  /* background: linear-gradient(135deg, #ecfdf5, #d1fae5); */
+}
+
+/* ===============================
+   CONTENT CARD (GLASS UI)
+================================ */
+.mind-content {
+  width: 100%;
+  max-width: 940px;
+
+  padding: 26px;
+
+  border-radius: 22px;
+
+ background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  backdrop-filter: blur(14px);
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+
+  text-align: center;
+
+  animation: fadeIn 0.4s ease;
+
+  position: relative;
+}
+
+/* ===============================
+   HEADER (NEW 🔥)
+================================ */
+.mind-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  margin-bottom: 20px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: rgba(255,255,255,0.8);
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.back-btn:hover {
+  background: #10b981;
+  color: white;
+
+  transform: translateX(-2px);
+}
+
+/* ===============================
+   TITLE
+================================ */
+.mind-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #065f46;
+
+  letter-spacing: 0.3px;
+}
+
+/* ===============================
+   SECTION
+================================ */
+.mind-section {
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+.mind-section p {
+  font-size: 14px;
+  color: #065f46;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ===============================
+   OPTIONS (MOOD BUTTONS)
+================================ */
+.mind-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mind-btn {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255,255,255,0.9);
+  color: #065f46;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.mind-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.mind-btn.active {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  box-shadow: 0 6px 16px rgba(16,185,129,0.3);
+}
+
+/* ===============================
+   TEXTAREA
+================================ */
+.mind-section textarea {
+  width: 100%;
+  min-height: 95px;
+
+  border-radius: 14px;
+  border: none;
+
+  padding: 12px;
+
+  background: rgba(255,255,255,0.95);
+
+  font-size: 13px;
+
+  outline: none;
+
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+
+  transition: all 0.2s ease;
+}
+
+.mind-section textarea:focus {
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.25);
+}
+
+/* ===============================
+   SUBMIT BUTTON
+================================ */
+.mind-submit {
+  margin-top: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border-radius: 14px;
+  border: none;
+
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.mind-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(16,185,129,0.3);
+}
+
+.mind-submit:active {
+  transform: scale(0.97);
+}
+
+/* ===============================
+   VIEW BUTTON (NEW 🔥)
+================================ */
+.mind-view-btn {
+  margin-top: 14px;
+
+  background: transparent;
+  border: none;
+
+  color: #047857;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.mind-view-btn:hover {
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
+/* ===============================
+   HISTORY SECTION
+================================ */
+.mind-history {
+  margin-top: 10px;
+  text-align: left;
+
+  animation: slideIn 0.3s ease;
+}
+
+/* ===============================
+   EMPTY STATE
+================================ */
+.empty {
+  font-size: 13px;
+  color: #065f46;
+  opacity: 0.6;
+  padding: 12px 0;
+  text-align: center;
+}
+
+/* ===============================
+   CARD
+================================ */
+.mind-card {
+  background: rgba(255,255,255,0.9);
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  margin-bottom: 12px;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+
+  transition: all 0.25s ease;
+}
+
+.mind-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   CARD TOP
+================================ */
+.mind-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 6px;
+}
+
+.mind-card-top span {
+  font-weight: 600;
+  color: #047857;
+  font-size: 13px;
+}
+
+.mind-card-top button {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  color: #ef4444;
+
+  transition: 0.2s;
+}
+
+.mind-card-top button:hover {
+  transform: scale(1.15);
+}
+
+/* ===============================
+   CARD TEXT
+================================ */
+.mind-card p {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #065f46;
+}
+
+.mind-card small {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+
+  .mind-content {
+    padding: 18px;
+  }
+
+  .mind-title {
+    font-size: 24px;
+  }
+
+  .mind-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+}

@@ -1,6 +1,8 @@
 // src/components/Chat/ChatList.jsx
 
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import {
   doc,
   onSnapshot,
@@ -19,6 +21,11 @@ import { getChatId } from "../../utils/chatid";
 import "./ChatList.css";
 
 export default function ChatList({ setSelectedUser, selectedUser }) {
+  const location = useLocation();
+
+  // 🔥 CHECK RANDOM PAGE
+  const isRandomPage = location.pathname === "/random";
+
   const [chatUsers, setChatUsers] = useState([]);
   const [activeUid, setActiveUid] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -54,7 +61,7 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
 
             const chatId = getChatId(currentUid, uid);
 
-            /* 🔥 Listen to last message */
+            /* LAST MESSAGE */
             const messagesRef = collection(
               db,
               "chats",
@@ -82,7 +89,7 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
               }
             });
 
-            /* 🔥 Listen to unread count */
+            /* UNREAD COUNT */
             onSnapshot(doc(db, "chats", chatId), (chatSnap) => {
               if (chatSnap.exists()) {
                 const chatData = chatSnap.data();
@@ -146,6 +153,11 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
     );
   };
 
+  /* ======================================
+     🔥 HIDE ON RANDOM PAGE
+  ====================================== */
+  if (isRandomPage) return null;
+
   return (
     <section className="chat-list">
       {/* HEADER */}
@@ -171,7 +183,7 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
 
       {chatUsers.length === 0 && <p>No chats yet</p>}
 
-      {/* CHAT USERS */}
+      {/* USERS */}
       {chatUsers.map((user) => {
         const meta = chatMeta[user.uid] || {};
         const lastMsg = meta.lastMsg;
@@ -200,7 +212,6 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
               }
             }}
           >
-            {/* CHECKBOX */}
             {editMode && (
               <input
                 type="checkbox"
@@ -211,7 +222,6 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
               />
             )}
 
-            {/* PROFILE IMAGE */}
             <div className="chat-avatar">
               {profileImage ? (
                 <img src={profileImage} alt="profile" />
@@ -222,7 +232,6 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
               )}
             </div>
 
-            {/* USER INFO */}
             <div className="chat-user-info">
               <p>{displayName}</p>
 
@@ -235,7 +244,6 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
               </span>
             </div>
 
-            {/* 🔥 UNREAD BADGE */}
             {unreadCount > 0 && (
               <div className="unread-badge">
                 {unreadCount > 9 ? "9+" : unreadCount}
@@ -245,7 +253,6 @@ export default function ChatList({ setSelectedUser, selectedUser }) {
         );
       })}
 
-      {/* DELETE BUTTON */}
       {editMode && selectedChats.length > 0 && (
         <button
           className="delete-selected-btn"

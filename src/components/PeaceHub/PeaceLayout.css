@@ -1,0 +1,86 @@
+/* ===============================
+   MAIN LAYOUT (COMPACT - NO STRETCH)
+================================ */
+.peace-layout {
+  width: 100%;
+  height: auto;
+
+  display: block;              /* ❌ remove flex */
+
+  text-align: center;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.peace-layout h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #065f46;
+
+  margin-bottom: 16px;
+}
+
+/* ===============================
+   CONTENT WRAPPER (FIXED WIDTH CENTER)
+================================ */
+.peace-content {
+  width: 100%;
+  max-width: 600px;          /* 🔥 tighter = professional */
+
+  margin: 0 auto;            /* ✅ center without flex */
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+/* 🔥 ONLY FOR MIND CHECK CLOSE BUTTON */
+.mindcheck-modal .peace-close-btn {
+  top: 8px;     /* 🔥 upar lao */
+  right: 8px;   /* 🔥 right corner ke paas */
+
+  width: 34px;
+  height: 34px;
+
+  background: rgba(255,255,255,0.9);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+/* ===============================
+   SECTION CARD (SAME SIZE LOOK)
+================================ */
+.peace-section {
+  width: 100%;
+
+  padding: 24px 20px;
+
+  border-radius: 18px;
+
+  /* 🔥 LIGHT GLASS STYLE (NOT HEAVY WHITE) */
+  background: rgba(255, 255, 255, 0.35);
+
+  backdrop-filter: blur(8px);
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* ===============================
+   REMOVE EXTRA HEIGHT FROM CHILD
+================================ */
+.peace-section > * {
+  margin: 0;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .peace-content {
+    max-width: 95%;
+  }
+
+  .peace-layout h2 {
+    font-size: 20px;
+  }
+}

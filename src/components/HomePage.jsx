@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./HomePage.css";
-
+import { Heart } from "lucide-react";
 import {
   ShieldCheck,
   Zap,
@@ -30,6 +30,7 @@ const HomePage = () => {
     ShieldCheck,
     Bot,
     Zap,
+    Heart
   ];
 
   /* BACKGROUND ICONS */
@@ -115,51 +116,64 @@ const HomePage = () => {
       </section>
 
       {/* PROJECT AT A GLANCE */}
-      <section className="points">
+   {/* PROJECT AT A GLANCE */}
+<section className="points">
+  <div className="container">
 
-        <div className="container">
+    <h2 className="section-title">
+      Project At A Glance
+    </h2>
 
-          <h2 className="section-title">
-            Project At A Glance
-          </h2>
+    <div className="points-grid">
 
-          <div className="points-grid">
-
-            <div className="point">
-              <div className="icon">
-                <ShieldCheck size={42} strokeWidth={1.6} />
-              </div>
-              <h3>Privacy-first</h3>
-              <p>
-                Anonymous identities and minimal user data exposure.
-              </p>
-            </div>
-
-            <div className="point">
-              <div className="icon">
-                <Zap size={42} strokeWidth={1.6} />
-              </div>
-              <h3>Real-time Chat</h3>
-              <p>
-                Instant messaging powered by Firebase Firestore.
-              </p>
-            </div>
-
-            <div className="point">
-              <div className="icon">
-                <Bot size={42} strokeWidth={1.6} />
-              </div>
-              <h3>AI Assistance</h3>
-              <p>
-                Smart moderation, auto replies and translation helpers.
-              </p>
-            </div>
-
-          </div>
-
+      {/* 1️⃣ RANDOM CHAT */}
+      <div className="point">
+        <div className="icon">
+          <Zap size={42} strokeWidth={1.6} />
         </div>
+        <h3>Random Anonymous Chat</h3>
+        <p>
+          Connect instantly with strangers based on emotions and experiences.
+        </p>
+      </div>
 
-      </section>
+      {/* 2️⃣ NORMAL CHAT */}
+      <div className="point">
+        <div className="icon">
+          <MessageCircle size={42} strokeWidth={1.6} />
+        </div>
+        <h3>Normal Chat</h3>
+        <p>
+          Search users, send requests and chat like modern social platforms.
+        </p>
+      </div>
+
+      {/* 3️⃣ PEACE HUB */}
+      <div className="point">
+        <div className="icon">
+          <Heart size={42} strokeWidth={1.6} />
+        </div>
+        <h3>Peace Hub</h3>
+        <p>
+          Relax your mind with meditation, breathing and wellness tools.
+        </p>
+      </div>
+
+      {/* 4️⃣ AI */}
+      <div className="point">
+        <div className="icon">
+          <Bot size={42} strokeWidth={1.6} />
+        </div>
+        <h3>AI Assistance</h3>
+        <p>
+          Get emotional support and smart responses with AI assistance.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* FOOTER */}
       <footer className="site-footer">

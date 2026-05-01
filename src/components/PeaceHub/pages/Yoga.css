@@ -1,0 +1,255 @@
+/* ===============================
+   MAIN CONTAINER
+================================ */
+.yoga-container {
+  width: 100%;
+  height: auto;
+
+  padding: 40px 20px;
+
+  text-align: center;
+
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+/* ===============================
+   CONTENT
+================================ */
+.yoga-content {
+  width: 100%;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   TITLE
+================================ */
+.yoga-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #065f46;
+
+  margin-bottom: 24px;
+}
+
+/* ===============================
+   IMAGE WRAPPER
+================================ */
+.yoga-image-wrapper {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* IMAGE */
+.yoga-image {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+
+  margin-bottom: 16px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+  transition: all 0.3s ease;
+}
+
+.yoga-image:hover {
+  transform: scale(1.05);
+}
+
+/* ===============================
+   NAME
+================================ */
+.yoga-name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #047857;
+
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   DESCRIPTION
+================================ */
+.yoga-desc {
+  font-size: 14px;
+  color: #065f46;
+  opacity: 0.75;
+
+  margin-bottom: 18px;
+  max-width: 450px;
+}
+
+/* ===============================
+   BUTTON LIST
+================================ */
+.yoga-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px;
+}
+
+/* BUTTON */
+.yoga-btn {
+  padding: 8px 14px;
+
+  border-radius: 12px;
+  border: none;
+
+  background: rgba(255,255,255,0.95);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  font-weight: 500;
+}
+
+/* ACTIVE */
+.yoga-btn.active {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: white;
+
+  box-shadow: 0 10px 25px rgba(16,185,129,0.35);
+}
+
+/* HOVER */
+.yoga-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   MODAL BACKDROP (BLUR)
+================================ */
+.yoga-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* background: rgba(0, 0, 0, 0.45); */
+  /* backdrop-filter: blur(6px); */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+
+  animation: fadeIn 0.3s ease;
+}
+
+/* ===============================
+   MODAL BOX
+================================ */
+.yoga-modal-box {
+  background: #ffffff;
+
+  padding: 22px;
+  border-radius: 20px;
+
+  width: 90%;
+  max-width: 660px;
+
+  text-align: center;
+  position: relative;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+
+  animation: popup 0.25s ease;
+
+  overflow: hidden; /* 🔥 THIS LINE FIXES EVERYTHING */
+}
+
+/* IMAGE */
+.yoga-modal-img {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+/* TITLE */
+.yoga-modal-box h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #065f46;
+}
+
+/* CLOSE BUTTON */
+.yoga-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #f1f5f9;
+  color: #334155;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.yoga-close-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+  .yoga-image {
+    width: 220px;
+  }
+
+  .yoga-title {
+    font-size: 24px;
+  }
+
+  .yoga-modal-box {
+    max-width: 90%;
+  }
+}
