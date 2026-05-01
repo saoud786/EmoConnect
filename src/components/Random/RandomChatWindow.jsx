@@ -90,6 +90,8 @@ const [decisionTaken, setDecisionTaken] = useState(false);
   const currentUser = auth.currentUser;
 
   const [messages, setMessages] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
+const [otherTyping, setOtherTyping] = useState(false);
   const [message, setMessage] = useState("");
   const [chatStatus, setChatStatus] = useState("active");
 
@@ -255,11 +257,30 @@ setBlockedMessage({
 
       setBlockedMessage(null);
       setMessage("");
+      await updateDoc(doc(db, "randomChats", chatId), {
+  typing: null
+});
     } catch (err) {
       console.error(err);
     }
   };
+useEffect(() => {
+  if (!chatId) return;
 
+  const unsub = onSnapshot(doc(db, "randomChats", chatId), (snap) => {
+    const data = snap.data();
+
+    if (!data) return;
+
+    if (data.typing && data.typing !== currentUser.uid) {
+      setOtherTyping(true);
+    } else {
+      setOtherTyping(false);
+    }
+  });
+
+  return () => unsub();
+}, [chatId]);
   // 🔥 CONTINUE CHAT FUNCTION
 const handleContinueChat = async () => {
   if (!chatId) return;
@@ -400,35 +421,64 @@ const handleContinueChat = async () => {
       </div>
 
       {/* INPUT */}
-      <div className="rc-input">
-        
-        <input
-          value={message}
-          placeholder={
-            chatStatus === "ended"
-              ? "Chat ended"
-              : "Type your message..."
-          }
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        disabled={
-  chatStatus !== "active" ||
-  (showDecision && !decisionTaken) ||
-  waiting
-}
-        />
+     {/* INPUT AREA */}
+<div className="rc-input-area">
 
-      <button
-  onClick={sendMessage}
- disabled={
-  chatStatus !== "active" ||
-  (showDecision && !decisionTaken) ||
-  waiting
-}
->
-          ➤
-        </button>
+  {/* ✅ TYPING INDICATOR (UPAR AAJAYEGA) */}
+  {otherTyping && (
+    <div className="typing-wrapper">
+      <div className="typing-bubble">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+    </div>
+  )}
+
+  {/* ✅ INPUT BOX */}
+  <div className="rc-input">
+
+    <input
+      value={message}
+      placeholder={
+        chatStatus === "ended"
+          ? "Chat ended"
+          : "Type your message..."
+      }
+      onChange={async (e) => {
+        const value = e.target.value;
+        setMessage(value);
+
+        if (!chatId) return;
+
+        if (!isTyping && value.trim() !== "") {
+          setIsTyping(true);
+          await updateDoc(doc(db, "randomChats", chatId), {
+            typing: currentUser.uid
+          });
+        }
+
+        if (value.trim() === "") {
+          setIsTyping(false);
+          await updateDoc(doc(db, "randomChats", chatId), {
+            typing: null
+          });
+        }
+      }}
+      onBlur={async () => {
+        if (!chatId) return;
+        setIsTyping(false);
+        await updateDoc(doc(db, "randomChats", chatId), {
+          typing: null
+        });
+      }}
+      onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+    />
+
+    <button onClick={sendMessage}>➤</button>
+
+  </div>
+</div>
       
 {chatStatus === "active" && showDecision && !decisionTaken && (
   <div className="rc-decision-wrapper">
