@@ -181,24 +181,24 @@ const HomePage = () => {
         <div className="container footer-inner">
 
           <div>
-            <p>© {new Date().getFullYear()} EmoConnect</p>
+            <p>© {new Date().getFullYear()} EmoConnect. All rights reserved.</p>
             <p className="muted">
-              Built with privacy and speed in mind.
+              Built with 🩶 by Saoud Ali
             </p>
           </div>
 
           <div>
             <p>
-              Contact:
+              Email:
               <a href="mailto:hello@emoconnect.app">
-                hello@emoconnect.app
+                saoudali381@gmail.com
               </a>
             </p>
 
             <p>
               Phone:
               <a href="tel:+911234567890">
-                +91 12345 67890
+                +91 9897158806
               </a>
             </p>
           </div>

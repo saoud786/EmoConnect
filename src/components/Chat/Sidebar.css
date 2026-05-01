@@ -94,7 +94,23 @@
   pointer-events: none;
 }
 
-
+/* ✅ ADD THIS */
+.side-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+.sidebar-peace .side-btn.active::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  width: 4px;
+  height: 30px;
+  border-radius: 6px;
+  background: #297c47; /* 🌿 green */
+}
+.sidebar-peace .side-btn.active::before {
+  box-shadow: 0 0 10px rgba(16, 105, 48, 0.6);
+}
 
 
 
@@ -126,7 +142,10 @@
   background: transparent !important;
   box-shadow: none !important;
 }
-
+.side-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
 /* icon default */
 .sidebar-peace .side-btn {
   background: transparent;
@@ -147,9 +166,7 @@
 }
 
 /* 💚 special peace active button */
-.sidebar-peace .side-btn.active::before {
-  display: none; /* remove blue line */
-}
+
 
 .sidebar-peace .side-btn.active {
   box-shadow:
